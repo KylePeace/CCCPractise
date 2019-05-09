@@ -1,0 +1,172 @@
+{
+  "ver": "1.0.14",
+  "uuid": "adea4328-72d0-4e82-926f-9a0abc76ccbe",
+  "scaleFactor": 40,
+  "boneCount": 43,
+  "precomputeJointMatrix": false,
+  "animationFrameRate": 30,
+  "subMetas": {
+    "buffer.bin": {
+      "ver": "1.0.0",
+      "uuid": "2409a810-e654-4854-846d-0770c629ac39",
+      "subMetas": {}
+    },
+    "StoneKing.mesh": {
+      "ver": "1.0.1",
+      "uuid": "61d2c71e-ff53-4575-938c-c81a8741daf9",
+      "verts": 3103,
+      "tris": 2950,
+      "submeshes": 1,
+      "minPos": {
+        "x": -0.0429911985993385,
+        "y": -0.00969953555613756,
+        "z": -0.00639945920556784
+      },
+      "maxPos": {
+        "x": 0.0429911985993385,
+        "y": 0.0520500019192696,
+        "z": 0.102153062820435
+      },
+      "subMetas": {}
+    },
+    "Stone.mesh": {
+      "ver": "1.0.1",
+      "uuid": "290145b7-1e13-4bb8-8242-edc9332b322e",
+      "verts": 215,
+      "tris": 268,
+      "submeshes": 1,
+      "minPos": {
+        "x": -0.0911236330866814,
+        "y": -0.010383028537035,
+        "z": -0.00635459879413247
+      },
+      "maxPos": {
+        "x": -0.0464216396212578,
+        "y": 0.0303547438234091,
+        "z": 0.104655310511589
+      },
+      "subMetas": {}
+    },
+    "StoneKing-0.skeleton": {
+      "ver": "1.0.1",
+      "uuid": "00cb91fe-abc2-45e0-924f-590cdec6bf31",
+      "subMetas": {}
+    },
+    "StoneKing-1.skeleton": {
+      "ver": "1.0.1",
+      "uuid": "0f7533d1-1b7b-4304-93ad-8db08ef3326b",
+      "subMetas": {}
+    },
+    "StoneKing.prefab": {
+      "ver": "1.1.0",
+      "uuid": "72bed743-bf16-474d-a2b0-a73531190203",
+      "optimizationPolicy": "AUTO",
+      "asyncLoadAssets": false,
+      "readonly": true,
+      "content": [
+        {
+          "__type__": "cc.Prefab",
+          "_name": "",
+          "_objFlags": 0,
+          "data": {
+            "__id__": 1
+          }
+        },
+        {
+          "__type__": "cc.Node",
+          "_name": "Sprite",
+          "_objFlags": 0,
+          "_opacity": 255,
+          "_color": {
+            "__type__": "cc.Color",
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+          },
+          "_cascadeOpacityEnabled": true,
+          "_parent": null,
+          "_anchorPoint": {
+            "__type__": "cc.Vec2",
+            "x": 0.5,
+            "y": 0.5
+          },
+          "_contentSize": {
+            "__type__": "cc.Size",
+            "width": 40,
+            "height": 36
+          },
+          "_children": [],
+          "_rotationX": 0,
+          "_rotationY": 0,
+          "_scaleX": 1,
+          "_scaleY": 1,
+          "_position": {
+            "__type__": "cc.Vec2",
+            "x": 0,
+            "y": 0
+          },
+          "_skewX": 0,
+          "_skewY": 0,
+          "_localZOrder": 0,
+          "_globalZOrder": 0,
+          "_tag": -1,
+          "_opacityModifyRGB": false,
+          "_reorderChildDirty": false,
+          "_id": "",
+          "_active": true,
+          "_components": [
+            {
+              "__id__": 2
+            }
+          ],
+          "_prefab": {
+            "__id__": 3
+          }
+        },
+        {
+          "__type__": "cc.Sprite",
+          "_name": "",
+          "_objFlags": 0,
+          "node": {
+            "__id__": 1
+          },
+          "_enabled": true,
+          "_spriteFrame": {
+            "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+          },
+          "_type": 0,
+          "_sizeMode": 1,
+          "_fillType": 0,
+          "_fillCenter": {
+            "__type__": "cc.Vec2",
+            "x": 0,
+            "y": 0
+          },
+          "_fillStart": 0,
+          "_fillRange": 0,
+          "_isTrimmedMode": true,
+          "_srcBlendFactor": 770,
+          "_dstBlendFactor": 771,
+          "_atlas": null
+        },
+        {
+          "__type__": "cc.PrefabInfo",
+          "root": {
+            "__id__": 1
+          },
+          "asset": null,
+          "fileId": "d7118yAG5lKybkFOAh8koPL"
+        }
+      ],
+      "subMetas": {}
+    },
+    "StoneKing.mtl": {
+      "ver": "1.0.2",
+      "uuid": "ccec1700-f85c-44a1-8f30-68bacb701465",
+      "dataAsSubAsset": "{\n  \"__type__\": \"cc.Material\",\n  \"_name\": \"\",\n  \"_objFlags\": 0,\n  \"_native\": \"\",\n  \"_effectAsset\": {\n    \"__uuid__\": \"6d91e591-4ce0-465c-809f-610ec95019c6\"\n  },\n  \"_defines\": {\n    \"USE_DIFFUSE_TEXTURE\": true\n  },\n  \"_props\": {\n    \"diffuseColor\": {\n      \"__type__\": \"cc.Color\",\n      \"r\": 255,\n      \"g\": 255,\n      \"b\": 255,\n      \"a\": 255\n    },\n    \"diffuseTexture\": {\n      \"__uuid__\": \"85e9e3ce-9987-4093-be99-9aefc63fcfc4\"\n    }\n  }\n}",
+      "name": "StoneKing.mtl",
+      "subMetas": {}
+    }
+  }
+}

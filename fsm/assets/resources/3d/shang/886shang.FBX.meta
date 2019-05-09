@@ -1,0 +1,161 @@
+{
+  "ver": "1.0.14",
+  "uuid": "a8e75729-f9ec-4219-a88f-e8faeefb79e7",
+  "scaleFactor": 1,
+  "boneCount": 17,
+  "precomputeJointMatrix": false,
+  "animationFrameRate": 30,
+  "subMetas": {
+    "buffer.bin": {
+      "ver": "1.0.0",
+      "uuid": "6fc4fdcb-f76d-4842-905c-a49f00cc5e1a",
+      "subMetas": {}
+    },
+    "Object019-s.mesh": {
+      "ver": "1.0.1",
+      "uuid": "ef57a938-ff6e-48be-a1f8-c4ab7cfa1370",
+      "verts": 1363,
+      "tris": 1153,
+      "submeshes": 1,
+      "minPos": {
+        "x": -0.966720998287201,
+        "y": -0.671794950962067,
+        "z": -0.715971350669861
+      },
+      "maxPos": {
+        "x": 2.21911644935608,
+        "y": 0.671795010566711,
+        "z": 2.20111179351807
+      },
+      "subMetas": {}
+    },
+    "886shang-0.skeleton": {
+      "ver": "1.0.1",
+      "uuid": "54747178-3987-4e92-8b62-ec6e007de077",
+      "subMetas": {}
+    },
+    "Take 001.sac": {
+      "ver": "1.0.1",
+      "uuid": "83f738ed-55db-4cc0-880f-81f678234a47",
+      "modelUuid": "a8e75729-f9ec-4219-a88f-e8faeefb79e7",
+      "animationID": 0,
+      "name": "Take 001",
+      "maxFrameCount": 1,
+      "totalFrameCount": 4,
+      "duration": 0,
+      "animationFrameRate": 30,
+      "subMetas": {}
+    },
+    "886shang.prefab": {
+      "ver": "1.1.0",
+      "uuid": "d7f268ba-7be5-41bd-9db6-2a531613fd4b",
+      "optimizationPolicy": "AUTO",
+      "asyncLoadAssets": false,
+      "readonly": true,
+      "content": [
+        {
+          "__type__": "cc.Prefab",
+          "_name": "",
+          "_objFlags": 0,
+          "data": {
+            "__id__": 1
+          }
+        },
+        {
+          "__type__": "cc.Node",
+          "_name": "Sprite",
+          "_objFlags": 0,
+          "_opacity": 255,
+          "_color": {
+            "__type__": "cc.Color",
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+          },
+          "_cascadeOpacityEnabled": true,
+          "_parent": null,
+          "_anchorPoint": {
+            "__type__": "cc.Vec2",
+            "x": 0.5,
+            "y": 0.5
+          },
+          "_contentSize": {
+            "__type__": "cc.Size",
+            "width": 40,
+            "height": 36
+          },
+          "_children": [],
+          "_rotationX": 0,
+          "_rotationY": 0,
+          "_scaleX": 1,
+          "_scaleY": 1,
+          "_position": {
+            "__type__": "cc.Vec2",
+            "x": 0,
+            "y": 0
+          },
+          "_skewX": 0,
+          "_skewY": 0,
+          "_localZOrder": 0,
+          "_globalZOrder": 0,
+          "_tag": -1,
+          "_opacityModifyRGB": false,
+          "_reorderChildDirty": false,
+          "_id": "",
+          "_active": true,
+          "_components": [
+            {
+              "__id__": 2
+            }
+          ],
+          "_prefab": {
+            "__id__": 3
+          }
+        },
+        {
+          "__type__": "cc.Sprite",
+          "_name": "",
+          "_objFlags": 0,
+          "node": {
+            "__id__": 1
+          },
+          "_enabled": true,
+          "_spriteFrame": {
+            "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+          },
+          "_type": 0,
+          "_sizeMode": 1,
+          "_fillType": 0,
+          "_fillCenter": {
+            "__type__": "cc.Vec2",
+            "x": 0,
+            "y": 0
+          },
+          "_fillStart": 0,
+          "_fillRange": 0,
+          "_isTrimmedMode": true,
+          "_srcBlendFactor": 770,
+          "_dstBlendFactor": 771,
+          "_atlas": null
+        },
+        {
+          "__type__": "cc.PrefabInfo",
+          "root": {
+            "__id__": 1
+          },
+          "asset": null,
+          "fileId": "d7118yAG5lKybkFOAh8koPL"
+        }
+      ],
+      "subMetas": {}
+    },
+    "Material #41.mtl": {
+      "ver": "1.0.2",
+      "uuid": "34ada9b0-f54b-4b60-94b9-0ff121334e2b",
+      "dataAsSubAsset": null,
+      "name": "Material #41.mtl",
+      "subMetas": {}
+    }
+  }
+}
