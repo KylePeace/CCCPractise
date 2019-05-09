@@ -39,11 +39,44 @@
 |玩家状态|  x        | 玩家攻击结束|  
 |敌人状态|敌人攻击结束|     x      |
 
-表1 玩家状态转移表
+表2 玩家状态转移表
+
 |状态    |攻击状态|待机状态|移动状态|
 |-------|------  |---     |----   |
 |攻击状态|  x     | 攻击结束|  攻击结束|
 |待机状态|点击攻击按钮|x|点击移动按钮|
 |移动状态|点击攻击按钮|x|x|
+
+$
+主状态机main=
+\begin{cases}
+ \text{player}\\
+ \text{enemy}
+\end{cases}
+$
+$
+子状态机player=
+\begin{cases}
+ \text{攻击attack}\\
+ \text{待机idle}\\
+ \text{移动run}
+\end{cases}
+$
+
+```mermaid
+    graph TB
+    id1(开始)-->id2[main]
+    id2--初始状态为player状态-->id3[player]
+    id3-->id4[是否攻击]
+    id4 --攻击,切换为enemy-->id2
+    id3-->run
+    id3-->idle
+    run-->id3
+    idle-->id3
+    id2-->enemy
+    enemy-->id6[攻击]
+    id6--切换为player状态-->id2
+```
+
 
 ## 3 玩家
