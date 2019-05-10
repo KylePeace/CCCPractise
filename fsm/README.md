@@ -47,6 +47,8 @@
 |待机状态|点击攻击按钮|x|点击移动按钮|
 |移动状态|点击攻击按钮|x|x|
 
+
+
 $
 主状态机main=
 \begin{cases}
@@ -54,6 +56,10 @@ $
  \text{enemy}
 \end{cases}
 $
+
+
+
+
 $
 子状态机player=
 \begin{cases}
@@ -62,6 +68,7 @@ $
  \text{移动run}
 \end{cases}
 $
+
 
 ```mermaid
     graph TB
