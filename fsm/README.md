@@ -69,10 +69,7 @@ $
 \end{cases}
 $
 
-<<<<<<< HEAD
 流程图:
-=======
->>>>>>> ce8800915d0f2c2eada7939cffab93309b8c33dc
 
 ```mermaid
     graph TB
