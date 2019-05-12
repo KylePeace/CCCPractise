@@ -97,14 +97,15 @@ $
 
 ##### 2. 创建状态机
 
-直接new StateMachine 就可以了
+直接new StateMachine
 
 ```javascript
     let turnFsm  = new StateMachine({
-        data: {"manager":null},
+        init:"player",//初始状态
+        data: {"manager":manager},
         transitions: [
             {name: 'init',from: "none",to: 'player'},
-            {name: 'toPlayer',from: "enemy",to: 'player'},
+            {name: 'toPlayer',from: ["enemy","none"],to: 'player'},
             {name: 'toEnemy',from: "player",to: 'enemy'},
         ],
         methods:{
@@ -113,10 +114,57 @@ $
                 fsm.init()
             },
             onToPlayer(){
+                console.log("turnFsm toPlayer")
             },
             onToEnemy(){
                 turnFsm.manager.enemyAttack()
+            },
+            onLeaveState(){
+                //离开状态调用
+            },
+            onEnterState(){
+                //进入状态调用
+            },
+            onLeaveToPlayer(){
+                //离开player状态调用
             }
         }
 })
 ```
+
+###### 参数含义
+
+    init:初始状态(可选)
+    data:需要传入的数据(可选)
+    transitions:转移
+        e.g:从"node"到"player"状态的名字是"init"
+    methods:方法 这些方法中写一些你需要处理，使结构清晰透明
+        每一转移都有一个方法对应，on开头，比如init=>onInit
+        methods:还有一些生命周期的方法，可查阅使用
+            onLeaveState:离开状态调用
+            onEnterState:进入状态调用
+            ...
+            还可以对特定的状态调用
+            onLeaveToPlayer:离开player状态调用
+            onEnterToPlayer:进入player状态调用
+            ...
+            method的第一个参数lifecycle对象,后面是参数
+            onFun(lifecycle,args)
+            onToPlayer(lifecycle,args)
+
+    fsm中包含很多其他方法：
+        fsm.is(s)//判断传入状态是否是当前状态
+        fsm.can(t)///判断传入状态可从当前状态转变
+        ...
+
+###### 状态机的使用
+
+```javascript
+        turnFsm.toPlayer()
+        turnFsm.state  //状态是'player'
+        turnFsm.toEnemy()
+        turnFsm.state  //状态是'enemy'
+```
+
+    使用很简单，调用turnFsm中的方法转换，具体的操作可以看我的demo
+    https://github.com/KylePeace/CCCPractise/tree/master/fsm
