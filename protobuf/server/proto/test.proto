@@ -1,0 +1,13 @@
+package Testpackage;
+syntax = "proto3";
+
+enum Country {
+    china = 0 ;
+    other = 1;
+}
+
+message RoleInfoRequest {
+    string name = 1; // becomes awesomeField
+    string avatar = 2;
+    optional Country country = 4;
+}
