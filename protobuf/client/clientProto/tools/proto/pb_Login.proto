@@ -1,0 +1,23 @@
+package pb_Loginpackage;
+syntax = "proto3";
+
+enum Country {
+    china = 0 ;
+    other = 1;
+}
+
+enum ErrCode{
+	scuess = 0;
+	fail  =1;
+}
+
+message LoginRequest {
+
+}
+
+message LoginResponse {
+	optional ErrCode code = 1;
+    string name = 2; // becomes awesomeField
+    string avatar = 3;
+    optional Country country = 4;
+}
