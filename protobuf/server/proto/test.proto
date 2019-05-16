@@ -5,8 +5,19 @@ enum Country {
     china = 0 ;
     other = 1;
 }
+enum msgType{
+    RoleInfoRequest = 0;
+    RoleInfoRequest2 = 1;
+
+}
 
 message RoleInfoRequest {
+    string name = 1; // becomes awesomeField
+    string avatar = 2;
+    optional Country country = 4;
+}
+
+message RoleInfoRequest2 {
     string name = 1; // becomes awesomeField
     string avatar = 2;
     optional Country country = 4;

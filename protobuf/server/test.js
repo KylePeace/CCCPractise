@@ -26,7 +26,6 @@ protobuf.load("./proto/test.proto", function(err, root) {
     // Encode a message to an Uint8Array (browser) or Buffer (node)
     var buffer = AwesomeMessage.encode(message).finish();
     buffer = new Uint8Array(buffer);
-    let data = {"msgName":666,data:}
 
     console.log("1+",buffer)
 
