@@ -1,6 +1,20 @@
 var fs = require("fs")
 protobuf = require("protobufjs")
 
+function test(){
+    let str = "test"
+
+    let protoType = parseInt(10001)
+
+    var byteArr = new ArrayBuffer(4 + 4);
+    var dv = new DataView(byteArr);
+    dv.setInt32(0, protoType, true);
+    var v1 = dv.getInt32(0,true);
+
+
+    console.log(byteArr)
+}
+test()
 protobuf.load("./proto/test.proto", function(err, root) {
 	  if (err)
         throw err;
@@ -25,8 +39,12 @@ protobuf.load("./proto/test.proto", function(err, root) {
     
     // Encode a message to an Uint8Array (browser) or Buffer (node)
     var buffer = AwesomeMessage.encode(message).finish();
-    buffer = new Uint8Array(buffer);
+    let dv = new DataView(buffer.buffer)
+    var v1 = dv.getUint8(0);
+    dv.setInt32(0, 25, false);
 
+    buffer = new Uint8Array(buffer);
+   
     console.log("1+",buffer)
 
     // ... do something with buffer

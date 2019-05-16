@@ -2,47 +2,77 @@
 var fs = require("fs")
 var protobuf = require("protobufjs")
 
-let msgNameIdx ={}
+let msgName ={}
+let msgIdIdx  ={
+	"100001":"LoginRequest",
+	"100002":"LoginResponse",
+	"LoginResponse":"100002",
+	"LoginRequest" :"100001",
 
-const pbKeyArr = {
-	"pb_Login":{
-		0:"LoginRequest",
-		1:"LoginResponse"
-	}
+
 }
-
 
 var protobufManager = function () {
 	this.messageArray = {}
-	for (const key in pbKeyArr) {
-		let path = "./proto/"+key+".proto"
-		protobuf.load(path,function(err, root) {
-			if (err)throw err;
-			console.log(key)
-			for (const i in pbKeyArr[key]) {
-				console.log(pbKeyArr[key][i])
-				let str = key+"package."+pbKeyArr[key][i]
-				var message = root.lookupType(str);
-				msgNameIdx[message.name] = message
-			}
-		})
-	}
+	let path = "./proto/pb_Login.proto"
+	protobuf.load(path,function(err, root) {
+		if (err)throw err;
+		var message1 = root.lookupType("LoginRequest");
+		msgName[message1.name] = message1
+		var message2 = root.lookupType("LoginResponse");
+		msgName[message2.name] = message2
+	})
+	
 };
 
 
 protobufManager.prototype.encode = function(msgType,data){
-    let errMsg = msgNameIdx[msgType].verify(data)
-    if(errMsg) return null
+    let errMsg = msgName[msgType].verify(data)
+	if (errMsg) return null
 
-    var message =  msgNameIdx[msgType].create(data); // or use .fromObject if conversion is necessary
-    var buffer =  msgNameIdx[msgType].encode(message).finish();
-    buffer = new Uint8Array(buffer);    // protobuf.Writer(buffer)
-    return buffer
+	var message = msgName[msgType].create(data); // or use .fromObject if conversion is necessary
+	var buffer = msgName[msgType].encode(message).finish();
+    // var dst = new Uint8Array(buffer);
+
+	var protoTypeId = parseInt(msgIdIdx[msgType])
+
+	let byteArr =  new ArrayBuffer(4 + buffer.length);
+	var dv = new DataView(byteArr);
+	dv.setInt32(0, protoTypeId, true);
+	for (var i = 0; i < buffer.length; i++) {
+		dv.setUint8(4 + i, buffer[i], true);
+	}
+
+	return byteArr
 }
 
-protobufManager.prototype.decode = function(msgType,data){
-    var message = msgNameIdx[msgType].decode(data);
-    return message
+protobufManager.prototype.decode = function(receiveData){
+	var dv = new DataView(receiveData);
+
+	var protoTypeId = dv.getInt32(0, true);
+	var data = [];
+	var len = receiveData.byteLength - 4 
+	for (var i = 0; i < len; i++) {
+		data[i] = dv.getUint8(4 + i);
+	}
+
+	var message = msgName[msgIdIdx[protoTypeId]].decode(data);
+
+	// function changeInt64(data) {
+	// 	for (const key in data) {
+	// 		if (typeof (data[key]) == 'object') {
+	// 			if (data[key].low != undefined && data[key].high != undefined && data[key].unsigned != undefined) {
+	// 				data[key] = parseInt(data[key])
+	// 			} else {
+	// 				changeInt64(data[key]);
+	// 			}
+	// 		}
+	// 	}
+	// }
+	// changeInt64(message);
+
+    // var message = msgName[msgType].decode(data);
+    return {msgName:msgIdIdx[protoTypeId],data:message}
 }
 
 

@@ -36,13 +36,27 @@ $root.pb_Loginpackage = (function() {
      * ErrCode enum.
      * @name pb_Loginpackage.ErrCode
      * @enum {string}
-     * @property {number} scuess=0 scuess value
+     * @property {number} success=0 success value
      * @property {number} fail=1 fail value
      */
     pb_Loginpackage.ErrCode = (function() {
         var valuesById = {}, values = Object.create(valuesById);
-        values[valuesById[0] = "scuess"] = 0;
+        values[valuesById[0] = "success"] = 0;
         values[valuesById[1] = "fail"] = 1;
+        return values;
+    })();
+
+    /**
+     * msgType enum.
+     * @name pb_Loginpackage.msgType
+     * @enum {string}
+     * @property {number} LoginRequest=100001 LoginRequest value
+     * @property {number} LoginResponse=100002 LoginResponse value
+     */
+    pb_Loginpackage.msgType = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[100001] = "LoginRequest"] = 100001;
+        values[valuesById[100002] = "LoginResponse"] = 100002;
         return values;
     })();
 
@@ -416,7 +430,7 @@ $root.pb_Loginpackage = (function() {
                 return object;
             var message = new $root.pb_Loginpackage.LoginResponse();
             switch (object.code) {
-            case "scuess":
+            case "success":
             case 0:
                 message.code = 0;
                 break;
@@ -456,7 +470,7 @@ $root.pb_Loginpackage = (function() {
                 options = {};
             var object = {};
             if (options.defaults) {
-                object.code = options.enums === String ? "scuess" : 0;
+                object.code = options.enums === String ? "success" : 0;
                 object.name = "";
                 object.avatar = "";
                 object.country = options.enums === String ? "china" : 0;

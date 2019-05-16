@@ -4,43 +4,62 @@
  * 
  */
 
-const pbKeyArr = {
-	"pb_Login":{
-		0:"LoginRequest",
-		1:"LoginResponse"
-	}
-}
+let msgName = {}
+let msgIdIdx = {}
+let msgNameIdx ={}
 
+let pb = require("pb_Login")
+let msgCode = "msgType"
 
-
-let msgNameIdx = {}
 var protobufManager = function () {
 	if(CC_EDITOR)return 
+	this.session = 1
+	msgName["LoginRequest"] 	= pb["pb_Loginpackage"]["LoginRequest"]
+	msgName["LoginResponse"] = pb["pb_Loginpackage"]["LoginResponse"]
+	let codeArr = pb["pb_Loginpackage"][msgCode]
+	for (const key in codeArr) {
+		if(msgName[key]){
+			msgIdIdx[codeArr[key]] = key
+			msgNameIdx[key] = codeArr[key]
 
-	for (const i in pbKeyArr) {
-		let pbkey = pbKeyArr[i]
-		for (const j in pbkey) {
-			msgNameIdx[pbkey[j]] = require(i)[i+"package"][pbkey[j]]
 		}
 	}
 };
 
 
 protobufManager.prototype.encode = function (msgType, data) {
-	let errMsg = msgNameIdx[msgType].verify(data)
+	let errMsg = msgName[msgType].verify(data)
 	if (errMsg) return null
 
-	var message = msgNameIdx[msgType].create(data); // or use .fromObject if conversion is necessary
-	var buffer = msgNameIdx[msgType].encode(message).finish();
-    var dst = new Uint8Array(buffer);
+	var message = msgName[msgType].create(data); // or use .fromObject if conversion is necessary
+	var buffer = msgName[msgType].encode(message).finish();
+    // var dst = new Uint8Array(buffer);
 
-	return dst
+	var protoTypeId = parseInt(msgNameIdx[msgType])
+
+	let byteArr =  new ArrayBuffer(4 + buffer.length);
+	var dv = new DataView(byteArr);
+	dv.setInt32(0, protoTypeId, true);
+	for (var i = 0; i < buffer.length; i++) {
+		dv.setUint8(4 + i, buffer[i], true);
+	}
+
+	return byteArr
 }
 
-protobufManager.prototype.decode = function (msgType, data) {
-    var dst = new Uint8Array(data);
-	var message = msgNameIdx[msgType].decode(dst);
-	return message
+protobufManager.prototype.decode = function (receiveData) {
+
+	var dv = new DataView(receiveData);
+
+	var protoTypeId = dv.getInt32(0, true);
+	var data = [];
+	var len = receiveData.byteLength - 4 
+	for (var i = 0; i < len; i++) {
+		data[i] = dv.getUint8(4 + i);
+	}
+
+	var message = msgName[msgIdIdx[protoTypeId]].decode(data);
+	return {msgName:msgIdIdx[protoTypeId],data:message}
 }
 
 
