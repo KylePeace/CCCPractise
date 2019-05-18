@@ -14,7 +14,8 @@ let msgIdIdx  ={
 
 var protobufManager = function () {
 	this.messageArray = {}
-	let path = "./proto/pb_Login.proto"
+	
+	let path = "../proto/pb_Login.proto"
 	protobuf.load(path,function(err, root) {
 		if (err)throw err;
 		var message1 = root.lookupType("LoginRequest");
@@ -30,9 +31,8 @@ protobufManager.prototype.encode = function(msgType,data){
     let errMsg = msgName[msgType].verify(data)
 	if (errMsg) return null
 
-	var message = msgName[msgType].create(data); // or use .fromObject if conversion is necessary
+	var message = msgName[msgType].create(data); 
 	var buffer = msgName[msgType].encode(message).finish();
-    // var dst = new Uint8Array(buffer);
 
 	var protoTypeId = parseInt(msgIdIdx[msgType])
 
@@ -55,23 +55,7 @@ protobufManager.prototype.decode = function(receiveData){
 	for (var i = 0; i < len; i++) {
 		data[i] = dv.getUint8(4 + i);
 	}
-
 	var message = msgName[msgIdIdx[protoTypeId]].decode(data);
-
-	// function changeInt64(data) {
-	// 	for (const key in data) {
-	// 		if (typeof (data[key]) == 'object') {
-	// 			if (data[key].low != undefined && data[key].high != undefined && data[key].unsigned != undefined) {
-	// 				data[key] = parseInt(data[key])
-	// 			} else {
-	// 				changeInt64(data[key]);
-	// 			}
-	// 		}
-	// 	}
-	// }
-	// changeInt64(message);
-
-    // var message = msgName[msgType].decode(data);
     return {msgName:msgIdIdx[protoTypeId],data:message}
 }
 

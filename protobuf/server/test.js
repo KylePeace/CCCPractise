@@ -1,6 +1,5 @@
 var fs = require("fs")
 protobuf = require("protobufjs")
-
 function test(){
     let str = "test"
 

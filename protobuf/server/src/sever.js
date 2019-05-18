@@ -10,7 +10,7 @@ wss.binaryType = 'arraybuffer';
 
 let loginData = {
 	code:0,
-	name: "小李子",
+	name: "火箭必赢",
 	avatar: "www.baidu.com",
 	country: 0
 }
@@ -29,6 +29,8 @@ wss.on('connection', function (ws, req) {
 			let buffer = pm.encode("LoginResponse",loginData)
 			ws.send(buffer)
 		}
+
+		////广播
 		// wss.clients.forEach(function each(client) {
 		// 	let buffer = pm.encode("test",roleData)
 		// 	if(data){
@@ -39,7 +41,7 @@ wss.on('connection', function (ws, req) {
 	})
 
 	ws.on('close', function () {
-		console.log("删除一个用户")
+		console.log("一个用户关闭连接")
 		delete users[userId]
 	})
 })
