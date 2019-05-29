@@ -1,5 +1,21 @@
 window.m4 = {
-
+  /**
+   * 在大多数三维数学库中没有负责像素空间与裁剪空间转换的 projection 方法
+   *  代替的是叫做 ortho 或 orthographic 的方法，它看起来像这样
+   * 
+   */
+  orthographic: function(left, right, bottom, top, near, far) {
+    return [
+      2 / (right - left), 0, 0, 0,
+      0, 2 / (top - bottom), 0, 0,
+      0, 0, 2 / (near - far), 0,
+ 
+      (left + right) / (left - right),
+      (bottom + top) / (bottom - top),
+      (near + far) / (near - far),
+      1,
+    ];
+  },
     projection: function(width, height, depth) {
       // Note: This matrix flips the Y axis so 0 is at the top.
       return [
