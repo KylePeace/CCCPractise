@@ -1,0 +1,75 @@
+
+
+// 注意：当前版本的格式是实验性的，之后还会进行修改。
+// 后续版本的格式不保证兼容当前格式，可能需要手动升级到最新版本。，
+%{
+  techniques: [
+    {
+      passes: [
+        {
+          vert: vs
+          frag: fs
+          cullMode: none
+          blend: true
+        }
+      ]
+      layer: 0
+    }
+  ]
+  properties: {
+    testPicture: {
+      type: sampler2D
+      value: null
+    }
+ 
+  }
+%}
+
+%% vs {
+
+precision highp float;
+uniform mat4 cc_matViewProj;
+attribute vec3 a_position;
+
+#if USE_TEXTURE
+  attribute mediump vec2 a_uv0;
+  varying mediump vec2 v_uv0;
+#endif
+
+attribute mediump vec4 a_color;
+varying mediump vec4 v_color;
+
+void main () {
+  #if USE_TEXTURE
+    v_uv0 = a_uv0;
+  #endif
+
+  gl_Position = cc_matViewProj * vec4(a_position, 1);
+  v_color=a_color;
+}
+
+}
+
+%% fs {
+
+precision mediump float;
+
+#if USE_TEXTURE
+  uniform sampler2D testPicture;
+  varying mediump vec2 v_uv0;
+#endif
+
+#include <alpha-test>
+varying mediump vec4 v_color;
+
+void main () {
+  vec4 color = vec4(1.0);
+
+  #if USE_TEXTURE
+    color *= texture2D(testPicture, v_uv0).rgba;
+  #endif
+
+  gl_FragColor = v_color*color;
+}
+
+}

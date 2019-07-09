@@ -1,6 +1,7 @@
 
 var fs = require("fs")
 var protobuf = require("protobufjs")
+var xxtea = require("xxtea")
 
 let msgName ={}
 let msgIdIdx  ={
@@ -8,14 +9,12 @@ let msgIdIdx  ={
 	"100002":"LoginResponse",
 	"LoginResponse":"100002",
 	"LoginRequest" :"100001",
-
-
 }
 
 var protobufManager = function () {
 	this.messageArray = {}
 	
-	let path = "../proto/pb_Login.proto"
+	let path = "./proto/pb_Login.proto"
 	protobuf.load(path,function(err, root) {
 		if (err)throw err;
 		var message1 = root.lookupType("LoginRequest");

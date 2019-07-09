@@ -5,25 +5,30 @@
  */
 
 let msgName = {}
-let msgIdIdx = {}
-let msgNameIdx ={}
+let msgIdIdx  ={
+	"100001":"LoginRequest",
+	"100002":"LoginResponse",
+	"LoginResponse":"100002",
+	"LoginRequest" :"100001",
+}
 
 let pb = require("pb_Login")
+var xxtea = require("xxtea")
+
 let msgCode = "msgType"
 
 var protobufManager = function () {
 	if(CC_EDITOR)return 
-	this.session = 1
 	msgName["LoginRequest"] 	= pb["pb_Loginpackage"]["LoginRequest"]
-	msgName["LoginResponse"] = pb["pb_Loginpackage"]["LoginResponse"]
+	msgName["LoginResponse"]    = pb["pb_Loginpackage"]["LoginResponse"]
 	let codeArr = pb["pb_Loginpackage"][msgCode]
-	for (const key in codeArr) {
-		if(msgName[key]){
-			msgIdIdx[codeArr[key]] = key
-			msgNameIdx[key] = codeArr[key]
+	// for (const key in codeArr) {
+	// 	if(msgName[key]){
+	// 		msgIdIdx[codeArr[key]] = key
+	// 		msgNameIdx[key] = codeArr[key]
 
-		}
-	}
+	// 	}
+	// }
 };
 
 
@@ -31,11 +36,10 @@ protobufManager.prototype.encode = function (msgType, data) {
 	let errMsg = msgName[msgType].verify(data)
 	if (errMsg) return null
 
-	var message = msgName[msgType].create(data); // or use .fromObject if conversion is necessary
+	var message = msgName[msgType].create(data);
 	var buffer = msgName[msgType].encode(message).finish();
-    // var dst = new Uint8Array(buffer);
 
-	var protoTypeId = parseInt(msgNameIdx[msgType])
+	var protoTypeId = parseInt(msgIdIdx[msgType])
 
 	let byteArr =  new ArrayBuffer(4 + buffer.length);
 	var dv = new DataView(byteArr);
@@ -43,7 +47,7 @@ protobufManager.prototype.encode = function (msgType, data) {
 	for (var i = 0; i < buffer.length; i++) {
 		dv.setUint8(4 + i, buffer[i], true);
 	}
-
+	
 	return byteArr
 }
 

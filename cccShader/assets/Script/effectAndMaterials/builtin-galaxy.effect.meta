@@ -1,0 +1,11 @@
+{
+  "ver": "1.0.15",
+  "uuid": "1cf53fd0-4a6b-4b84-86ce-cc8cec92d4d6",
+  "compiledShaders": [
+    {
+      "vert": "\n#define _IS_VERT_SHADER 1\n\n  precision highp float;\n  attribute vec3 a_position;\n  uniform mat4 cc_matViewProj;\n  attribute mediump vec2 a_uv0;\n\tvarying mediump vec2 v_uv0;\n  \n  void main()\n  {\n      gl_Position = cc_matViewProj *vec4(a_position, 1);\n      v_uv0 = a_uv0;\n  }\n\n\n",
+      "frag": "\n#define _IS_FRAG_SHADER 1\n\nprecision highp float;\n\nuniform sampler2D texture;\n\nvarying lowp vec2 v_uv0;\nuniform float sys_time;\n\nvoid main()\n{\n    vec2 uv = v_uv0.xy;\n    vec4 src_color = texture2D(texture, uv).rgba;\n    float width = 0.01;\n    float start = sys_time * 0.1;\n    float strength = 0.01;\n    float offset = 0.3;\n\n    if( uv.x < (start - offset * uv.y) &&  uv.x > (start - offset * uv.y - width))\n    {\n        vec3 improve = strength * vec3(255, 255, 255);\n        vec3 result = improve * vec3( src_color.r, src_color.g, src_color.b);\n        gl_FragColor = vec4(result, src_color.a);\n        \n\n    } else {\n        gl_FragColor = src_color;\n    }\n\n}\n\n\n"
+    }
+  ],
+  "subMetas": {}
+}

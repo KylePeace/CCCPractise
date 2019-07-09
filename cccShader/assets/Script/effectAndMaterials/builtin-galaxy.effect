@@ -1,0 +1,78 @@
+// Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.  
+
+// Note: Current format version is experiment, the format may be changed.
+// The future format may not be compatible, you may need to update the script manually.
+
+// 注意：当前版本的格式是实验性的，之后还会进行修改。
+// 后续版本的格式不保证兼容当前格式，可能需要手动升级到最新版本。，
+%{
+  techniques: [
+    {
+      passes: [
+        {
+          vert: vs
+          frag: fs
+          cullMode: none
+          blend: true
+        }
+      ]
+      layer: 0
+    }
+  ]
+  properties: {
+    texture: {
+      type: sampler2D
+      value: null
+    }
+  }
+%}
+
+%% vs {
+  precision highp float;
+  attribute vec3 a_position;
+  uniform mat4 cc_matViewProj;
+  attribute mediump vec2 a_uv0;
+	varying mediump vec2 v_uv0;
+  
+  void main()
+  {
+      gl_Position = cc_matViewProj *vec4(a_position, 1);
+      v_uv0 = a_uv0;
+  }
+}
+
+%% fs {
+
+
+precision highp float;
+
+uniform sampler2D texture;
+
+varying lowp vec2 v_uv0;
+uniform float sys_time;
+
+
+void main()
+{
+    vec2 uv = v_uv0.xy;
+    vec4 src_color = texture2D(texture, uv).rgba;
+    float width = 0.01;
+    float start = sys_time * 0.1;
+    float strength = 0.01;
+    float offset = 0.3;
+
+    if( uv.x < (start - offset * uv.y) &&  uv.x > (start - offset * uv.y - width))
+    {
+        vec3 improve = strength * vec3(255, 255, 255);
+        vec3 result = improve * vec3( src_color.r, src_color.g, src_color.b);
+        gl_FragColor = vec4(result, src_color.a);
+        // gl_FragColor = vec4(0,0,0, src_color.a);
+
+
+    } else {
+        gl_FragColor = src_color;
+    }
+
+}
+
+}

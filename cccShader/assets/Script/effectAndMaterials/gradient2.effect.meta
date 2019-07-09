@@ -1,0 +1,11 @@
+{
+  "ver": "1.0.15",
+  "uuid": "9eecad7a-1d32-429b-b710-5b541b523a23",
+  "compiledShaders": [
+    {
+      "vert": "\n#define _IS_VERT_SHADER 1\n\nprecision highp float;\nuniform mat4 cc_matViewProj;\nattribute vec3 a_position;\n\n#if USE_TEXTURE\n  attribute mediump vec2 a_uv0;\n  varying mediump vec2 v_uv0;\n#endif\n\nattribute mediump vec4 a_color;\nvarying mediump vec4 v_color;\n\nvoid main () {\n  #if USE_TEXTURE\n    v_uv0 = a_uv0;\n  #endif\n\n  gl_Position = cc_matViewProj * vec4(a_position, 1);\n  v_color=a_color;\n}\n\n\n",
+      "frag": "\n#define _IS_FRAG_SHADER 1\n\nprecision mediump float;\n\n#if USE_TEXTURE\n  uniform sampler2D testPicture;\n  varying mediump vec2 v_uv0;\n#endif\n\n#if USE_ALPHA_TEST\n  uniform float alphaThreshold;\n#endif\n\nvoid ALPHA_TEST (in vec4 color) {\n  #if USE_ALPHA_TEST\n      if (color.a < alphaThreshold) discard;\n  #endif\n}\n\nvoid ALPHA_TEST (in float alpha) {\n  #if USE_ALPHA_TEST\n      if (alpha < alphaThreshold) discard;\n  #endif\n}\n\nvarying mediump vec4 v_color;\n\nvoid main () {\n  vec4 color = vec4(1.0);\n\n  #if USE_TEXTURE\n    color *= texture2D(testPicture, v_uv0).rgba;\n  #endif\n\n  gl_FragColor = v_color*color;\n}\n\n\n"
+    }
+  ],
+  "subMetas": {}
+}

@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "protobufjs": "^6.8.8",
-    "ws": "^7.0.0"
+    "ws": "^7.0.0",
+    "xxtea": "^0.2.1"
   }
 }

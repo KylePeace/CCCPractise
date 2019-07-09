@@ -4,7 +4,7 @@ var wss = new(require('ws')).Server({
 let users = {} // userID: webSocket
 console.log("启动成功")
 
-var pm  = new (require("./protobufManager"))()
+var pm  = new (require("./src/protobufManager"))()
 
 wss.binaryType = 'arraybuffer';
 
@@ -14,6 +14,14 @@ let loginData = {
 	avatar: "www.baidu.com",
 	country: 0
 }
+function RandomNumBoth(Min,Max){
+	var Range = Max - Min;
+	var Rand = Math.random();
+	var num = Min + Math.round(Rand * Range); //四舍五入
+	return num;
+}
+let namelist = ["火箭必赢","湖人必赢","勇士必输"]
+
 
 wss.on('connection', function (ws, req) {
 	let userId = req.connection.remoteAddress + ":" + req.connection.remotePort
@@ -24,6 +32,7 @@ wss.on('connection', function (ws, req) {
 
 	ws.on('message', function (message, req) {
 		console.log("收到消息为：", message, req)
+		loginData.name = namelist[RandomNumBoth(0,namelist.length)] + new Date().getSeconds()
 		let data2 = pm.decode(message)
 		if(data2.msgName == "LoginRequest"){
 			let buffer = pm.encode("LoginResponse",loginData)
