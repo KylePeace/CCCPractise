@@ -31,18 +31,14 @@ precision highp float;
 uniform mat4 cc_matViewProj;
 attribute vec3 a_position;
 
-#if USE_TEXTURE
-  attribute mediump vec2 a_uv0;
-  varying mediump vec2 v_uv0;
-#endif
+attribute mediump vec2 a_uv0;
+varying mediump vec2 v_uv0;
 
 attribute mediump vec4 a_color;
 varying mediump vec4 v_color;
 
 void main () {
-  #if USE_TEXTURE
-    v_uv0 = a_uv0;
-  #endif
+  v_uv0 = a_uv0;
 
   gl_Position = cc_matViewProj * vec4(a_position, 1);
   v_color=a_color;
@@ -54,22 +50,14 @@ void main () {
 
 precision mediump float;
 
-#if USE_TEXTURE
-  uniform sampler2D testPicture;
-  varying mediump vec2 v_uv0;
-#endif
+uniform sampler2D testPicture;
+varying mediump vec2 v_uv0;
 
-#include <alpha-test>
 varying mediump vec4 v_color;
 
 void main () {
-  vec4 color = vec4(1.0);
 
-  #if USE_TEXTURE
-    color *= texture2D(testPicture, v_uv0).rgba;
-  #endif
-
-  gl_FragColor = v_color*color;
+  gl_FragColor =v_color* texture2D(testPicture, v_uv0).rgba;
 }
 
 }

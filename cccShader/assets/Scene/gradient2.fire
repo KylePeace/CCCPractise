@@ -285,16 +285,16 @@
     "_enabled": true,
     "upCol": {
       "__type__": "cc.Color",
-      "r": 5,
-      "g": 5,
-      "b": 5,
+      "r": 27,
+      "g": 26,
+      "b": 26,
       "a": 255
     },
     "downCol": {
       "__type__": "cc.Color",
-      "r": 13,
+      "r": 224,
       "g": 224,
-      "b": 123,
+      "b": 13,
       "a": 255
     },
     "_id": "6fNd6LYqhMMqNE1GiUqde0"
@@ -309,13 +309,15 @@
     "_enabled": true,
     "_materials": [
       {
-        "__uuid__": "2a296057-247c-4a1c-bbeb-0548b6c98650"
+        "__uuid__": "2141b2a9-aa27-4652-9418-5a947d9d1588"
       }
     ],
     "_mesh": null,
     "_receiveShadows": false,
     "_shadowCastingMode": 0,
-    "textures": [],
+    "textures": [
+      "D:/githubPubilic/CCCPractise/cccShader/library/imports/50/50acc952-efab-4562-9a12-11421816f1e7.png"
+    ],
     "_id": "69qUAb7IRJLJhPrCRfF3rJ"
   },
   {

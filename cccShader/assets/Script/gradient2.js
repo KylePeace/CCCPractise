@@ -1,4 +1,3 @@
-
 let gfx = cc.gfx;
 
 cc.Class({
@@ -8,44 +7,66 @@ cc.Class({
     },
 
     properties: {
-        upCol:cc.Color,
-        downCol:cc.Color,
+        upCol: cc.Color,
+        downCol: cc.Color,
     },
-    start () {
-        var vfmt = new gfx.VertexFormat([
-            { name: gfx.ATTR_POSITION, type: gfx.ATTR_TYPE_FLOAT32, num: 2 },
-            { name: gfx.ATTR_UV0, type: gfx.ATTR_TYPE_FLOAT32, num: 2 },
-            { name: gfx.ATTR_COLOR, type: gfx.ATTR_TYPE_UINT8, num: 4, normalize: true },
+    onLoad() {
+        cc.macro.SHOW_MESH_WIREFRAME = true
+
+    },
+    start() {
+        var vfmt = new gfx.VertexFormat([{
+                name: gfx.ATTR_POSITION,
+                type: gfx.ATTR_TYPE_FLOAT32,
+                num: 2
+            },
+            {
+                name: gfx.ATTR_UV0,
+                type: gfx.ATTR_TYPE_FLOAT32,
+                num: 2
+            },
+            {
+                name: gfx.ATTR_COLOR,
+                type: gfx.ATTR_TYPE_UINT8,
+                num: 4,
+                normalize: true
+            },
 
         ]);
-        
+
         let mesh = new cc.Mesh();
-        mesh.init(vfmt, 9, true);
+        mesh.init(vfmt, 6, false);
         this.mesh = mesh;
 
-        
-        this.vertexes = [
-            cc.v2(-480, -320), cc.v2(480, -320), cc.v2(-480, 320),
-            cc.v2(-480, 320), cc.v2(480, -320), cc.v2(480, 320),
-        ];
 
+        // this.vertexes = [
+        //     cc.v2(-480, -320), cc.v2(480, -320), cc.v2(-480, 320),
+        //     cc.v2(480, 320),cc.v2(480, 320), cc.v2(-480, 320)
+        // ];
+
+
+        this.vertexes = [
+            cc.v2(0, 0), cc.v2(0, 640),
+            cc.v2(960, 640),cc.v2(960, 0)
+        ];
         //设置定点坐标
         mesh.setVertices(gfx.ATTR_POSITION, this.vertexes);
 
+    
         mesh.setVertices(gfx.ATTR_UV0, [
-            cc.v2(0,0), cc.v2(1,0), cc.v2( 0,1),
-            cc.v2(0,1), cc.v2(1,0), cc.v2(1,1),
+            cc.v2(0, 0), cc.v2(0, 1),
+            cc.v2(1, 1), cc.v2(1, 0),
         ]);
-
         // 修改 color 顶点颜色  255,255,255  000
         mesh.setVertices(gfx.ATTR_COLOR, [
-            this.downCol, this.downCol, this.upCol,
-            this.upCol, this.downCol, this.upCol,
+            this.downCol, this.downCol,
+            this.upCol, this.upCol, 
         ]);
 
-        mesh.setIndices([
-            0, 1, 3, 1, 4, 3,
-            1, 2, 4, 2, 5, 4,
+
+        mesh.setIndices([ //确定三角形
+            0,2,1,
+            0,3,2,
         ]);
 
         let renderer = this.node.getComponent(cc.MeshRenderer);
@@ -54,21 +75,13 @@ cc.Class({
         }
         renderer.mesh = mesh;
         this.mesh = mesh;
+
+        // renderer.textures[0] = this.tex
     },
 
-    update (dt) {
-        if (CC_EDITOR) return;
-        
-        // let lm = this.vertexes[3];
-        // let rm = this.vertexes[5];
-        // if ((lm.x < -200 && this.speed < 0) || (lm.x > 0 && this.speed > 0)) {
-        //     this.speed *= -1;
-        // }
-        // lm.x += dt * this.speed;
-        // rm.x += -dt * this.speed;
-
-        // this.mesh.setVertices(gfx.ATTR_POSITION, this.vertexes);
-    },
+    // update (dt) {
+    //     if (CC_EDITOR) return;
+    // },
 
 
 });

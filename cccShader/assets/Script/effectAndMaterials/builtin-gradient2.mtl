@@ -6,9 +6,7 @@
   "_effectAsset": {
     "__uuid__": "9eecad7a-1d32-429b-b710-5b541b523a23"
   },
-  "_defines": {
-    "USE_TEXTURE": true
-  },
+  "_defines": {},
   "_props": {
     "testPicture": {
       "__uuid__": "50acc952-efab-4562-9a12-11421816f1e7"
