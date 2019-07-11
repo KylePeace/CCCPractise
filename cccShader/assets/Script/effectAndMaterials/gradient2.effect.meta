@@ -3,8 +3,8 @@
   "uuid": "9eecad7a-1d32-429b-b710-5b541b523a23",
   "compiledShaders": [
     {
-      "vert": "\n#define _IS_VERT_SHADER 1\n\nprecision highp float;\nuniform mat4 cc_matViewProj;\nattribute vec3 a_position;\n\nattribute mediump vec2 a_uv0;\nvarying mediump vec2 v_uv0;\n\nattribute mediump vec4 a_color;\nvarying mediump vec4 v_color;\n\nvoid main () {\n  v_uv0 = a_uv0;\n\n  gl_Position = cc_matViewProj * vec4(a_position, 1);\n  v_color=a_color;\n}\n\n\n",
-      "frag": "\n#define _IS_FRAG_SHADER 1\n\nprecision mediump float;\n\nuniform sampler2D testPicture;\nvarying mediump vec2 v_uv0;\n\nvarying mediump vec4 v_color;\n\nvoid main () {\n\n  gl_FragColor =v_color* texture2D(testPicture, v_uv0).rgba;\n}\n\n\n"
+      "vert": "\n#define _IS_VERT_SHADER 1\n\nprecision highp float;\nuniform mat4 cc_matViewProj;\nattribute vec3 a_position;\nattribute mediump vec2 a_uv0;\nvarying mediump vec2 v_uv0;\nattribute mediump vec4 a_color;\nvarying mediump vec4 v_color;\n\nvoid main () {\n  v_uv0 = a_uv0;\n  mat4 rotatton = mat4(\n      -1, 0, 0,0,\n      0, -1, 0,0,\n      0, 0, 1,0,\n      0, 0, 0,1\n\n  );\n  gl_Position = cc_matViewProj * vec4(a_position, 1)*rotatton;\n  v_color=a_color;\n}\n\n\n",
+      "frag": "\n#define _IS_FRAG_SHADER 1\n\nprecision mediump float;\n\nuniform sampler2D texture;\nvarying mediump vec2 v_uv0;\nvarying mediump vec4 v_color;\n\nvoid main () {\n  gl_FragColor =v_color* texture2D(texture, v_uv0).rgba;\n}\n\n\n"
     }
   ],
   "subMetas": {}

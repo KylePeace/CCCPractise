@@ -109,138 +109,31 @@ Funs.setGeometryF = function (gl) {
 Funs.setGeometry3DF = function (gl) {
     gl.bufferData(
         gl.ARRAY_BUFFER,
-        new Float32Array([
-            // left column front
-            0, 0, 0,
-            0, 150, 0,
-            30, 0, 0,
-            
-            0, 150, 0,
-            30, 150, 0,
-            30, 0, 0,
-
-            // top rung front
-            30, 0, 0,
-            30, 30, 0,
-            100, 0, 0,
-            30, 30, 0,
-            100, 30, 0,
-            100, 0, 0,
-
-            // middle rung front
-            30, 60, 0,
-            30, 90, 0,
-            67, 60, 0,
-            30, 90, 0,
-            67, 90, 0,
-            67, 60, 0,
-
-            // left column back
-            0, 0, 30,
-            30, 0, 30,
-            0, 150, 30,
-            0, 150, 30,
-            30, 0, 30,
-            30, 150, 30,
-
-            // top rung back
-            30, 0, 30,
-            100, 0, 30,
-            30, 30, 30,
-            30, 30, 30,
-            100, 0, 30,
-            100, 30, 30,
-
-            // middle rung back
-            30, 60, 30,
-            67, 60, 30,
-            30, 90, 30,
-            30, 90, 30,
-            67, 60, 30,
-            67, 90, 30,
-
-            // top
-            0, 0, 0,
-            100, 0, 0,
-            100, 0, 30,
-            0, 0, 0,
-            100, 0, 30,
-            0, 0, 30,
-
-            // top rung right
-            100, 0, 0,
-            100, 30, 0,
-            100, 30, 30,
-            100, 0, 0,
-            100, 30, 30,
-            100, 0, 30,
-
-            // under top rung
-            30, 30, 0,
-            30, 30, 30,
-            100, 30, 30,
-            30, 30, 0,
-            100, 30, 30,
-            100, 30, 0,
-
-            // between top rung and middle
-            30, 30, 0,
-            30, 60, 30,
-            30, 30, 30,
-            30, 30, 0,
-            30, 60, 0,
-            30, 60, 30,
-
-            // top of middle rung
-            30, 60, 0,
-            67, 60, 30,
-            30, 60, 30,
-            30, 60, 0,
-            67, 60, 0,
-            67, 60, 30,
-
-            // right of middle rung
-            67, 60, 0,
-            67, 90, 30,
-            67, 60, 30,
-            67, 60, 0,
-            67, 90, 0,
-            67, 90, 30,
-
-            // bottom of middle rung.
-            30, 90, 0,
-            30, 90, 30,
-            67, 90, 30,
-            30, 90, 0,
-            67, 90, 30,
-            67, 90, 0,
-
-            // right of bottom
-            30, 90, 0,
-            30, 150, 30,
-            30, 90, 30,
-            30, 90, 0,
-            30, 150, 0,
-            30, 150, 30,
-
-            // bottom
-            0, 150, 0,
-            0, 150, 30,
-            30, 150, 30,
-            0, 150, 0,
-            30, 150, 30,
-            30, 150, 0,
-
-            // left side
-            0, 0, 0,
-            0, 0, 30,
-            0, 150, 30,
-            0, 0, 0,
-            0, 150, 30,
-            0, 150, 0
-        ]),
+        new Float32Array(F3DData),
         gl.STATIC_DRAW);
 }
+
+// Center the F around the origin and Flip it around. We do this because
+  // we're in 3D now with and +Y is up where as before when we started with 2D
+  // we had +Y as down.
+
+  // We could do by changing all the values above but I'm lazy.
+  // We could also do it with a matrix at draw time but you should
+  // never do stuff at draw time if you can do it at init time.
+Funs.setGeometry3DF2 = function (gl) {
+    let pos  = new Float32Array(F3DData)
+
+    let matrix = m4.xRotation(Math.PI)//x轴旋转180度
+    matrix = m4.translate(matrix,0,-90,0) // 移动位置
+    for (let i = 0; i < pos.length; i+=3) {
+        var vector = m4.transformPoint(matrix,[pos[i+0],pos[i+1],pos[i+2],1])
+        pos[i + 0] = vector[0];
+        pos[i + 1] = vector[1];
+        pos[i + 2] = vector[2];       
+    }
+    gl.bufferData(gl.ARRAY_BUFFER, pos, gl.STATIC_DRAW);
+}
+
 // Fill the buffer with colors for the 'F'.
 function setColors(gl) {
     gl.bufferData(
@@ -513,61 +406,156 @@ Funs.setColors3DF = function (gl) {
         ]),
         gl.STATIC_DRAW);
 }
-Funs.createCube = function () {
-    gl.bufferData(
-        gl.ARRAY_BUFFER,
-        new Float32Array([
-            0, 0, 0,
-            30, 0, 0,
-            0, 150, 0,
-            0, 150, 0,
-            30, 0, 0,
-            30, 150, 0,
-
-            30, 0, 0,
-            100, 0, 0,
-            30, 30, 0,
-            30, 30, 0,
-            100, 0, 0,
-            100, 30, 0,
-
-            // 0, 0,0,
-            // 0, 150,0,
-            // 150, 0,0,
-            // 150, 150,0,
-            // 0, 150,0,
-            // 150, 0,0,
 
 
-            // 0, 0,150,
-            // 0, 150,150,
-            // 150, 0,150,
-            // 150, 150,150,
-            // 0, 150,150,
-            // 150, 0,150,
-
-
-            // 0, 0,0,
-            // 0, 150,0,
-            // 0, 0,150,
-            // 0, 150,150,
-            // 0, 150,0,
-            // 0, 0,150,
-
-            // 150, 0,0,
-            // 150, 150,0,
-            // 150, 0,150,
-            // 150, 150,150,
-            // 150, 150,0,
-            // 150, 0,150,
-        ]),
-        gl.STATIC_DRAW);
-}
-
+//弧度转角度
 Funs.radToDeg = function (r) {
     return r * 180 / Math.PI;
 }
 
+//角度转弧度
 Funs.degToRad = function (d) {
     return d * Math.PI / 180;
 }
+
+Funs.makeZToWMatrix= function(fudgeFactor) {
+    return [
+      1, 0, 0, 0,
+      0, 1, 0, 0,
+      0, 0, 1, fudgeFactor,
+      0, 0, 0, 1,
+    ];
+  }
+
+  //F 法向量
+ Funs.setNormals= function (gl) {
+    var normals = new Float32Array([
+            // 正面左竖
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+   
+            // 正面上横
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+   
+            // 正面中横
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+   
+            // 背面左竖
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, -1,
+   
+            // 背面上横
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, -1,
+   
+            // 背面中横
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, -1,
+   
+            // 顶部
+            0, 1, 0,
+            0, 1, 0,
+            0, 1, 0,
+            0, 1, 0,
+            0, 1, 0,
+            0, 1, 0,
+   
+            // 上横右面
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+   
+            // 上横下面
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+   
+            // 上横和中横之间
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+   
+            // 中横上面
+            0, 1, 0,
+            0, 1, 0,
+            0, 1, 0,
+            0, 1, 0,
+            0, 1, 0,
+            0, 1, 0,
+   
+            // 中横右面
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+   
+            // 中横底面
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+   
+            // 底部右侧
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+   
+            // 底面
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+   
+            // 左面
+            -1, 0, 0,
+            -1, 0, 0,
+            -1, 0, 0,
+            -1, 0, 0,
+            -1, 0, 0,
+            -1, 0, 0]);
+    gl.bufferData(gl.ARRAY_BUFFER, normals, gl.STATIC_DRAW);
+  }

@@ -11,7 +11,6 @@ shaders.vertexShaderSource = `
         // 使位置和矩阵相乘
         vec4 position = u_matrix*a_position;
 
-        // x和y 除以调整后的除数
         gl_Position =position;
         v_color = a_color;
     }

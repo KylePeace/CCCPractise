@@ -17,7 +17,7 @@
     }
   ]
   properties: {
-    testPicture: {
+    texture: {
       type: sampler2D
       value: null
     }
@@ -30,17 +30,21 @@
 precision highp float;
 uniform mat4 cc_matViewProj;
 attribute vec3 a_position;
-
 attribute mediump vec2 a_uv0;
 varying mediump vec2 v_uv0;
-
 attribute mediump vec4 a_color;
 varying mediump vec4 v_color;
 
 void main () {
   v_uv0 = a_uv0;
+  mat4 rotatton = mat4(
+      -1, 0, 0,0,
+      0, -1, 0,0,
+      0, 0, 1,0,
+      0, 0, 0,1
 
-  gl_Position = cc_matViewProj * vec4(a_position, 1);
+  );
+  gl_Position = cc_matViewProj * vec4(a_position, 1)*rotatton;
   v_color=a_color;
 }
 
@@ -50,14 +54,12 @@ void main () {
 
 precision mediump float;
 
-uniform sampler2D testPicture;
+uniform sampler2D texture;
 varying mediump vec2 v_uv0;
-
 varying mediump vec4 v_color;
 
 void main () {
-
-  gl_FragColor =v_color* texture2D(testPicture, v_uv0).rgba;
+  gl_FragColor =v_color* texture2D(texture, v_uv0).rgba;
 }
 
 }

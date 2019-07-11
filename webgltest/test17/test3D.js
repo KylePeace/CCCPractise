@@ -1,6 +1,6 @@
 /* eslint no-console:0 consistent-return:0 */
 "use strict";
-//  WebGL 三维正射投影
+//  WebGL WebGL 三维相机
 
 function main() {
 	// Get A WebGL context
@@ -14,101 +14,63 @@ function main() {
 	var matrixLocation = gl.getUniformLocation(program, "u_matrix");
 	var colorLocation = gl.getAttribLocation(program, "a_color");
 
+
 	// Create a buffer.
 	var positionBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-	Funs.setGeometry3DF(gl);
+	Funs.setGeometry3DF2(gl);
 
-	//剔除”背面三角形， "剔除"在这里是“不用绘制”的花哨叫法。
-	gl.enable(gl.CULL_FACE);
-	//开启深度缓冲
-	gl.enable(gl.DEPTH_TEST);
+	
 	var colorBuffer = gl.createBuffer();
 	// Bind it to ARRAY_BUFFER (think of it as ARRAY_BUFFER = colorBuffer)
 	gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
 	// Put geometry data into buffer
 	Funs.setColors3DF(gl);
 
+	
 	//定义一些变量存储矩形的平移，宽，高和颜色
-	var translation = [45, 150, 0];
-  	var rotation = [Funs.degToRad(40), Funs.degToRad(25), Funs.degToRad(325)];
-  	var scaleArr = [1, 1, 1];
-  	var color = [Math.random(), Math.random(), Math.random(), 1];
+	var cameraAngleRadians = Funs.degToRad(0);
+	var fieldOfViewRadians = Funs.degToRad(60);
+	let zNear =  1
+	let zFar  =  2000 
+	webglLessonsUI.setupSlider("#cameraAngle", {
+		value:Funs.radToDeg(cameraAngleRadians),
+		slide: updateCameraAngle,
+		min:-360,
+		max: 360,
+	});
 
-	// Setup a ui.
-	webglLessonsUI.setupSlider("#x", {
-		value:100,
-		slide: updatePosition(0),
-		max: gl.canvas.clientWidth
-	});
-	webglLessonsUI.setupSlider("#y", {
-		value:100,
-		slide: updatePosition(1),
-		max: gl.canvas.clientHeight
-	});
-	webglLessonsUI.setupSlider("#z", {
-		value:100,
-		slide: updatePosition(2),
-		max: gl.canvas.clientHeight
-	});
-	webglLessonsUI.setupSlider("#angleX", {
-		value: Funs.radToDeg(rotation[0]),
-		slide: updateRotation(0),
-		max: 360
-	});
-	webglLessonsUI.setupSlider("#angleY", {
-		value: Funs.radToDeg(rotation[1]),
-		slide: updateRotation(1),
-		max: 360
-	});
-	webglLessonsUI.setupSlider("#angleZ", {
-		value: Funs.radToDeg(rotation[2]),
-		slide: updateRotation(2),
-		max: 360
-	});
-	webglLessonsUI.setupSlider("#scaleX", {
-		value:scaleArr[0],
-		slide: updateScale(0),
-		min:-5,
-		max: 5,
-		step:0.01,
+	webglLessonsUI.setupSlider("#zNear", {
+		value:zNear,
+		slide: updateZNear,
+		min:1,
+		max: 2000,
+		step:1,
 		precision: 2
 	});
 
-	webglLessonsUI.setupSlider("#scaleY", {
-		value:scaleArr[1],
-		slide: updateScale(1),
-		min:-5,
-		max: 5,
-		step:0.01,
-		precision: 2
-	});
-	webglLessonsUI.setupSlider("#scaleZ", {
-		value:scaleArr[1],
-		slide: updateScale(2),
-		min:-5,
-		max: 5,
-		step:0.01,
+	webglLessonsUI.setupSlider("#zFar", {
+		value:zFar,
+		slide: updateZFar,
+		min:10,
+		max: 2000,
+		step:1,
 		precision: 2
 	});
 
-	function updateRotation(index) {
-		return function (event, ui) {
-			rotation[index] =  ui.value* Math.PI / 180;
-			drawScene();
-		};
+
+
+	function updateCameraAngle (event, ui) {
+		cameraAngleRadians =Funs.degToRad(ui.value);
+		drawScene();
 	}
-	function updatePosition(index) {
-		return function (event, ui) {
-			translation[index] = ui.value;
-			drawScene();
-		};
+	function updateZNear(event ,ui) {
+		zNear =ui.value;
+		drawScene();
 	}
-	function updateScale(index) {
-		return function (event, ui) {
-			scaleArr[index] = ui.value;
-			drawScene();
-		};
+	function updateZFar(event ,ui) {
+		zFar = ui.value;
+		drawScene();
 	}
 	drawScene();
 
@@ -122,8 +84,10 @@ function main() {
 		// 使用我们的程序
 		gl.useProgram(program);
 	
-
-		
+		//剔除”背面三角形， "剔除"在这里是“不用绘制”的花哨叫法。
+		gl.enable(gl.CULL_FACE);
+		//开启深度缓冲
+		gl.enable(gl.DEPTH_TEST);
 	
 		// Turn on the color attribute
 		gl.enableVertexAttribArray(colorLocation);
@@ -144,7 +108,6 @@ function main() {
 		gl.enableVertexAttribArray(positionLocation);
 		// 绑定位置缓冲
 		gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-
 		// 告诉属性怎么从positionBuffer中读取数据 (ARRAY_BUFFER)
 		var size = 3; // 每次迭代使用 3 个单位的数据
 		var type = gl.FLOAT; // 每个单位的数据类型是32位浮点型
@@ -155,24 +118,43 @@ function main() {
 		gl.vertexAttribPointer(
 			positionLocation, size,  type, normalize, stride, offset)
 
-		// 计算矩阵,将坐标
-		var matrix = m4.projection(
-			gl.canvas.clientWidth, gl.canvas.clientHeight,800);
 
-		matrix= m4.translate(matrix,translation[0],translation[1],translation[2])
-		matrix= m4.xRotate(matrix,rotation[0])
-		matrix= m4.yRotate(matrix,rotation[1])
-		matrix= m4.zRotate(matrix,rotation[2])
-		matrix= m4.scale(matrix,scaleArr[0],scaleArr[1],scaleArr[2])
+		
+		// 计算投影矩阵
+		var aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
+		// var zNear = 1;
+		// var zFar = 2000;
+		var projectionMatrix = m4.perspective(fieldOfViewRadians, aspect, zNear, zFar);
 
-		gl.uniformMatrix4fv(matrixLocation, false, matrix);
+		var numFs = 5;
+		var radius = 200;
+		// 计算相机的矩阵
+		var cameraMatrix = m4.yRotation(cameraAngleRadians);
+		cameraMatrix = m4.translate(cameraMatrix, 0, 0, radius * 1.5);
+		// Make a view matrix from the camera matrix
+		var viewMatrix = m4.inverse(cameraMatrix);
 
-		// Draw the geometry.
-		var primitiveType = gl.TRIANGLES;
-		var offset = 0;
-		var count = 16*6;  // 6 triangles in the 'F', 3 points per triangle
-		gl.drawArrays(primitiveType, offset, count);
+		// Compute a view projection matrix
+		var viewProjectionMatrix = m4.multiply(projectionMatrix, viewMatrix);
 
+		for (let ii = 0; ii < numFs; ii++) {
+			var angle = ii * Math.PI * 2 / numFs;
+			var x = Math.cos(angle) * radius;
+			var y = Math.sin(angle) * radius;
+
+			  // 从视图投影矩阵开始
+  				// 计算 F 的矩阵	
+			var matrix = m4.translate(viewProjectionMatrix, x, 0, y);
+
+			// 设置矩阵
+			gl.uniformMatrix4fv(matrixLocation, false, matrix);
+
+			 // 获得几何体
+			var primitiveType = gl.TRIANGLES;
+			var offset = 0;
+			var count = 16 * 6;
+			gl.drawArrays(primitiveType, offset, count);
+		}
 	}
 }
 

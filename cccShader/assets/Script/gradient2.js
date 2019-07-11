@@ -51,22 +51,21 @@ cc.Class({
         ];
         //设置定点坐标
         mesh.setVertices(gfx.ATTR_POSITION, this.vertexes);
-
-    
         mesh.setVertices(gfx.ATTR_UV0, [
             cc.v2(0, 0), cc.v2(0, 1),
             cc.v2(1, 1), cc.v2(1, 0),
         ]);
         // 修改 color 顶点颜色  255,255,255  000
         mesh.setVertices(gfx.ATTR_COLOR, [
-            this.downCol, this.downCol,
-            this.upCol, this.upCol, 
+            this.downCol, this.upCol,
+            this.upCol, this.downCol, 
         ]);
 
 
         mesh.setIndices([ //确定三角形
-            0,2,1,
+            1,0,2,
             0,3,2,
+           
         ]);
 
         let renderer = this.node.getComponent(cc.MeshRenderer);

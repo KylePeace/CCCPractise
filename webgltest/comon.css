@@ -4,8 +4,8 @@ body {
 }
 
 canvas {
-    width: 720vw;
-    height: 300vh;
+    width: 100vw;
+    height: 100vh;
     display: block;
 }
 
@@ -28,10 +28,10 @@ body {
 }
 
 canvas {
-    background-color: rgb(39, 54, 50);
+    background-color: rgb(2, 2, 2);
     border: 1px solid #FFF;
     /* NOTE: This size is changed if in iframe - see below '.iframe canvas' */
-    width: 720px;
+    width: 800px;
     height: 600px;
     display: block;
 }
@@ -52,7 +52,7 @@ canvas {
 }
 
 #ui {
-    opacity: 1;
+    opacity:255;
 }
 
 #ui>div {
@@ -72,6 +72,8 @@ canvas {
     font-size: small;
     min-width: 20em;
     text-align: right;
+    color: rgb(251, 251, 253);
+    text-shadow:1px 0px rgb(255, 7, 7);
 }
 
 .gman-checkbox-label {
@@ -95,6 +97,10 @@ canvas {
     display: flex;
     align-items: center;
     height: 1.7em;
+    color: rgb(251, 251, 253);
+    text-shadow:1px 0px rgb(255, 7, 7);
+
+
 }
 
 .gman-widget-slider,
