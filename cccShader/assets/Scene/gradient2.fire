@@ -78,7 +78,7 @@
     "_level": 0,
     "_components": [
       {
-        "__id__": 9
+        "__id__": 10
       }
     ],
     "_prefab": null,
@@ -333,7 +333,11 @@
     "_children": [],
     "_active": true,
     "_level": 1,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 9
+      }
+    ],
     "_prefab": null,
     "_opacity": 255,
     "_color": {
@@ -376,6 +380,23 @@
     "_is3DNode": false,
     "groupIndex": 0,
     "_id": "58Yr4SJ+ZHMp9lXugd+wfV"
+  },
+  {
+    "__type__": "cc.SkinnedMeshRenderer",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 8
+    },
+    "_enabled": true,
+    "_materials": [],
+    "_mesh": null,
+    "_receiveShadows": false,
+    "_shadowCastingMode": 0,
+    "textures": [],
+    "_skeleton": null,
+    "_rootBone": null,
+    "_id": "adYrh/vrNHM6ibC2ipZH9Q"
   },
   {
     "__type__": "cc.Canvas",

@@ -46,14 +46,14 @@ cc.Class({
 
 
         this.vertexes = [
-            cc.v2(0, 0), cc.v2(0, 640),
-            cc.v2(960, 640),cc.v2(960, 0)
+            cc.v2(0, 0), cc.v2(960, 0),
+            cc.v2(960, 640),cc.v2(0,640)
         ];
         //设置定点坐标
         mesh.setVertices(gfx.ATTR_POSITION, this.vertexes);
         mesh.setVertices(gfx.ATTR_UV0, [
-            cc.v2(0, 0), cc.v2(0, 1),
-            cc.v2(1, 1), cc.v2(1, 0),
+            cc.v2(0,1), cc.v2(1, 1),
+            cc.v2(1, 0), cc.v2(0, 0),
         ]);
         // 修改 color 顶点颜色  255,255,255  000
         mesh.setVertices(gfx.ATTR_COLOR, [
