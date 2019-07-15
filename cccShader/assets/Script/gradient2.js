@@ -11,7 +11,7 @@ cc.Class({
         downCol: cc.Color,
     },
     onLoad() {
-        cc.macro.SHOW_MESH_WIREFRAME = true
+        // cc.macro.SHOW_MESH_WIREFRAME = true
 
     },
     start() {
@@ -57,12 +57,12 @@ cc.Class({
         ]);
         // 修改 color 顶点颜色  255,255,255  000
         mesh.setVertices(gfx.ATTR_COLOR, [
-            this.downCol, this.upCol,
-            this.upCol, this.downCol, 
+            this.downCol, this.downCol,
+            this.upCol, this.upCol, 
         ]);
 
 
-        mesh.setIndices([ //确定三角形
+        mesh.setIndices([ //顶点顺序
             1,0,2,
             0,3,2,
            
@@ -75,12 +75,8 @@ cc.Class({
         renderer.mesh = mesh;
         this.mesh = mesh;
 
-        // renderer.textures[0] = this.tex
+
+
     },
-
-    // update (dt) {
-    //     if (CC_EDITOR) return;
-    // },
-
 
 });

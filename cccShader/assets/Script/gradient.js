@@ -19,7 +19,7 @@ cc.Class({
         this.setColor()
     },
 
-    setColor(up,down){
+    setColor(){
         this.upColor    = new Float32Array(4)
         this.upColor[0] =  this.upCol.r/255
         this.upColor[1] =  this.upCol.g/255
@@ -38,5 +38,4 @@ cc.Class({
         this.com.getMaterial(0).setProperty("u_downColor",this.downColor)
 
     },
-
 });
