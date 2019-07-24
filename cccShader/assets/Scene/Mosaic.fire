@@ -219,7 +219,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "default_btn_normal",
+    "_name": "bg",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -253,7 +253,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0,
+      "x": 24.088,
       "y": 0,
       "z": 0
     },
@@ -346,7 +346,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0,
+      "x": -215.286,
       "y": 0,
       "z": 0
     },
@@ -379,7 +379,8 @@
     "_materials": [
       {
         "__uuid__": "d6701b52-0a54-4146-a7c2-60c32c596a36"
-      }
+      },
+      null
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
