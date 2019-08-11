@@ -15,28 +15,31 @@ cc.Class({
 
     },
     start() {
+        //定义顶点数据格式，只需要指明所需的属性，避免造成存储空间的浪费
         var vfmt = new gfx.VertexFormat([{
+                //位置信息
                 name: gfx.ATTR_POSITION,
-                type: gfx.ATTR_TYPE_FLOAT32,
-                num: 2
+                type: gfx.ATTR_TYPE_FLOAT32,//数据类型
+                num: 2  //2个值 x,y  三维就是三个  x,y,z
             },
-            {
+            {   //UV信息
                 name: gfx.ATTR_UV0,
                 type: gfx.ATTR_TYPE_FLOAT32,
                 num: 2
             },
-            {
+            {   //颜色信息
                 name: gfx.ATTR_COLOR,
-                type: gfx.ATTR_TYPE_UINT8,
+                type: gfx.ATTR_TYPE_UINT8, //
                 num: 4,
                 normalize: true
             },
 
         ]);
 
+        //根据顶点格式初始化顶点内存
         let mesh = new cc.Mesh();
-        mesh.init(vfmt, 6, false);
-        this.mesh = mesh;
+        mesh.init(vfmt, 4, false);
+       // this.mesh = mesh;
 
 
         // this.vertexes = [
@@ -73,7 +76,7 @@ cc.Class({
             renderer = this.node.addComponent(cc.MeshRenderer);
         }
         renderer.mesh = mesh;
-        this.mesh = mesh;
+       // this.mesh = mesh;
 
 
 

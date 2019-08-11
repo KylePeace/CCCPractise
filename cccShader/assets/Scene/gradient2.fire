@@ -71,14 +71,14 @@
         "__id__": 5
       },
       {
-        "__id__": 8
+        "__id__": 7
       }
     ],
     "_active": true,
     "_level": 0,
     "_components": [
       {
-        "__id__": 10
+        "__id__": 9
       }
     ],
     "_prefab": null,
@@ -230,9 +230,6 @@
     "_components": [
       {
         "__id__": 6
-      },
-      {
-        "__id__": 7
       }
     ],
     "_prefab": null,
@@ -251,14 +248,14 @@
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 1,
+      "y": 1
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 554.25626
+      "x": -480,
+      "y": -320,
+      "z": 0
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -303,27 +300,6 @@
     "_id": "6fNd6LYqhMMqNE1GiUqde0"
   },
   {
-    "__type__": "cc.MeshRenderer",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 5
-    },
-    "_enabled": true,
-    "_materials": [
-      {
-        "__uuid__": "2141b2a9-aa27-4652-9418-5a947d9d1588"
-      }
-    ],
-    "_mesh": null,
-    "_receiveShadows": false,
-    "_shadowCastingMode": 0,
-    "textures": [
-      "D:/githubPubilic/CCCPractise/cccShader/library/imports/50/50acc952-efab-4562-9a12-11421816f1e7.png"
-    ],
-    "_id": "69qUAb7IRJLJhPrCRfF3rJ"
-  },
-  {
     "__type__": "cc.Node",
     "_name": "head",
     "_objFlags": 0,
@@ -335,7 +311,7 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 9
+        "__id__": 8
       }
     ],
     "_prefab": null,
@@ -386,7 +362,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 8
+      "__id__": 7
     },
     "_enabled": true,
     "_materials": [
