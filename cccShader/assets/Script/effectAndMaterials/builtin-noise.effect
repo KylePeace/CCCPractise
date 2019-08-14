@@ -32,31 +32,40 @@
   attribute vec3 a_position;
   uniform mat4 cc_matViewProj;
   attribute mediump vec2 a_uv0;
-  varying mediump vec2 v_uv0;
+	varying mediump vec2 v_uv0;
+  
+
+
   void main()
   {
       gl_Position = cc_matViewProj *vec4(a_position, 1);
+
       v_uv0 = a_uv0;
   }
 }
 
 %% fs {
 
-precision highp   float;
+precision highp float;
 uniform sampler2D texture;
 varying lowp vec2 v_uv0;
-// 纹理图片Size
-const vec2 texSize = vec2(195.0, 270.0);
-//马赛克Size
-const vec2 mosaicSize = vec2(0.9,0.9);
+
+
+
+
+
+vec2 noise(vec2 p) {
+
+    p *= 0.5;
+    return p;
+}
+
 
 void main()
-{ 
-    vec2 intXY = vec2(v_uv0.x * texSize.x, v_uv0.y * texSize.y);
-    vec2 XYMosaic = vec2(floor(intXY.x/mosaicSize.x) * mosaicSize.x, floor(intXY.y/mosaicSize.y) * mosaicSize.y);
-    vec2 UVMosaic = vec2(XYMosaic.x/texSize.x, XYMosaic.y/texSize.y);
-    vec4 color = texture2D(texture, UVMosaic);
-    gl_FragColor =  color;
+{
+   vec2 uv = noise(v_uv0);
+
+    gl_FragColor =  texture2D(texture, uv).rgba;
 }
 
 }
