@@ -7,6 +7,11 @@
     [
       false,
       false
+    ],
+    [
+      false,
+      false,
+      false
     ]
   ],
   "design-resolution-height": 640,
@@ -26,7 +31,8 @@
   "fit-width": false,
   "group-list": [
     "default",
-    "spine"
+    "spine",
+    "modle"
   ],
   "last-module-event-record-time": 0,
   "simulator-orientation": false,
