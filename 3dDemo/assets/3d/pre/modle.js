@@ -11,6 +11,7 @@ cc.Class({
 
     onLoad(){
         this.shapeType = -1
+        this.renderer = this.getComponent(cc.MeshRenderer);
     },
 
     start () {
@@ -55,27 +56,36 @@ cc.Class({
         // this.world = world
         
         // 创建长方体顶点数据
-        let data = cc.primitive.box(200, 200, 200);
-        // 根据顶点数据创建网格
-        let mesh =funs.createMesh(data, cc.color(100, 100, 100));
-        // 将创建的网格设置到 Mesh Renderer 上
-        let renderer = this.getComponent(cc.MeshRenderer);
-        renderer.mesh = mesh;
-        this.node.position = cc.v3(0,0,0)
+        // let data = cc.primitive.box(200, 200, 200);
+        // // 根据顶点数据创建网格
+        // let mesh =funs.createMesh(data, cc.color(100, 100, 100));
+        // // 将创建的网格设置到 Mesh Renderer 上
+        // let renderer = this.getComponent(cc.MeshRenderer);
+        // renderer.mesh = mesh;
+        // this.node.position = cc.v3(0,0,0)
     },
 
 
 
     createBox(data){
         this.shapeType = shape.box
-        let primitiveData = cc.primitive.box(data.w, data.h, data.L);
-        let mesh =funs.createMesh(primitiveData,data.color);
-        let renderer = this.getComponent(cc.MeshRenderer);
-        renderer.mesh = mesh;
-        this.node.position = cc.v3(0,0,0)
+        let primitiveData = cc.primitive.box(data.w, data.h, data.l);
+        this.setMesh(primitiveData,data.color)
     },
 
     createSphere(data){
 
+    },
+
+    createPlane(data){
+        this.shapeType = shape.plane
+        let primitiveData = cc.primitive.plane(data.w, data.l);
+        this.setMesh(primitiveData,data.color)
+    },
+
+    setMesh(primitiveData,color){
+        let mesh =funs.createMesh(primitiveData,color);
+        this.renderer.mesh = mesh;
     }
 });
+

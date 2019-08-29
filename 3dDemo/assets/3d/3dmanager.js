@@ -8,8 +8,7 @@ cc.Class({
         modleParent:cc.Node
     },
     onLoad(){
-        console.log(funs)
-        console.log(shape)
+     
 
     },
 
@@ -31,6 +30,17 @@ cc.Class({
             color:cc.color(100, 200, 100)
         }
         box.getComponent("modle").createBox(data)
+
+
+        let plane = cc.instantiate(this.modlePf)
+        plane.parent = this.modleParent
+        let data2  ={
+            w:3000000,
+            l:3000000,
+            color:cc.color(200, 100, 0)
+        }
+        plane.getComponent("modle").createPlane(data2)
+        plane.y = 0
 
     }
 

@@ -63,7 +63,7 @@
     "_eulerAngles": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 20,
+      "y": 30,
       "z": 0
     },
     "_skewX": 0,
