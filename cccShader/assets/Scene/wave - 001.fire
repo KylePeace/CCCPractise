@@ -45,16 +45,10 @@
       "y": 1,
       "z": 1
     },
-    "_eulerAngles": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
     "_is3DNode": true,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "10ffacdd-c448-4ed5-82cf-33d8880ffd28"
+    "_id": "861a9b00-11d7-4eeb-8873-98dd25d583df"
   },
   {
     "__type__": "cc.Node",
@@ -119,7 +113,7 @@
     "_skewY": 0,
     "_is3DNode": false,
     "groupIndex": 0,
-    "_id": "10G6uBPDdIfq/Slfgw0WYU"
+    "_id": "71PYe2QWxJCbB1p+M8MHxb"
   },
   {
     "__type__": "cc.Node",
@@ -159,7 +153,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 0
+      "z": 371.5248982235242
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -177,7 +171,7 @@
     "_skewY": 0,
     "_is3DNode": false,
     "groupIndex": 0,
-    "_id": "c7bEM6kuZG7o5lr74ALBgY"
+    "_id": "ab9jY84f5Ol4pHjhKHWF4K"
   },
   {
     "__type__": "cc.Camera",
@@ -212,11 +206,11 @@
       "height": 1
     },
     "_renderStages": 1,
-    "_id": "33iNBLrgNBbr264b9FNP8s"
+    "_id": "72W65VjuNJ5Yl/1ShTCojr"
   },
   {
     "__type__": "cc.Node",
-    "_name": "HelloWorld",
+    "_name": "cocos",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -270,7 +264,7 @@
     "_skewY": 0,
     "_is3DNode": false,
     "groupIndex": 0,
-    "_id": "56Z11HBsVIZ6B3bQNb8plA"
+    "_id": "e2STt+zhlCbpE7UwQua7Ur"
   },
   {
     "__type__": "cc.Sprite",
@@ -282,7 +276,7 @@
     "_enabled": true,
     "_materials": [
       {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+        "__uuid__": "6603f45d-39b3-452c-bcb9-ff79a2cf9e4f"
       }
     ],
     "_srcBlendFactor": 770,
@@ -291,7 +285,7 @@
       "__uuid__": "31bc895a-c003-4566-a9f3-2e54ae1c17dc"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 2,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -302,7 +296,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": null,
-    "_id": "e40nfqiLFOdZyqv9seHYHp"
+    "_id": "4aCZb3a35KhqQ0SYi9zezA"
   },
   {
     "__type__": "cc.Canvas",
@@ -319,6 +313,6 @@
     },
     "_fitWidth": false,
     "_fitHeight": true,
-    "_id": "aawSF8kY5NHKha+SCYoL6R"
+    "_id": "0dYOE7LhVBs6dwyzApsQY0"
   }
 ]
