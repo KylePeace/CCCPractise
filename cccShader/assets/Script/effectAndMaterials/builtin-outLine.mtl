@@ -7,5 +7,9 @@
     "__uuid__": "1f453275-b060-4709-abb3-921be5593ec4"
   },
   "_defines": {},
-  "_props": {}
+  "_props": {
+    "texture": {
+      "__uuid__": "6aa0aa6a-ebee-4155-a088-a687a6aadec4"
+    }
+  }
 }

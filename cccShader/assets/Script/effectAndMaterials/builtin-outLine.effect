@@ -55,9 +55,9 @@ varying   vec4 v_color;
 
 
 const float maxW   =0.02; 
-const float outlineSize = 1000.0;
-const vec3 outlineColor = vec3(1.0, 1.0, 0.0);
- vec2 textureSize = vec2(640.0, 720.0);
+const float outlineSize = 0.5;
+const vec3 outlineColor = vec3(1.0, 1.0, 0.5);
+ vec2 textureSize = vec2(960.0, 640.0);
 
 int getIsStrokeWithAngel(float angel) {
     int stroke = 0;
@@ -84,6 +84,7 @@ void main()
 
    
     int strokeCount = 0;
+ 
     strokeCount += getIsStrokeWithAngel(0.0);
     strokeCount += getIsStrokeWithAngel(30.0);
     strokeCount += getIsStrokeWithAngel(60.0);
@@ -99,7 +100,7 @@ void main()
     if (strokeCount > 0)
     {
         myC.rgb = outlineColor;
-        myC.a = 1.0;
+        myC.a = 1.;
     }
    
     gl_FragColor =  myC*v_color;
