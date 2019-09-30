@@ -20,9 +20,15 @@
     }
   ]
   properties: {
-    texture: {
-      type: sampler2D
-      value: null
+    
+    u_outlineSize:{
+       type: float
+       value: 2
+    }
+
+    u_outlineColor:{
+       type: color3
+       value: [1,1,0.5]
     }
   }
 %}
@@ -53,19 +59,18 @@ varying lowp vec2 v_uv0;
 uniform float     u_time; 
 varying   vec4 v_color;
 
-
-const float maxW   =0.02; 
-const float outlineSize = 0.5;
-const vec3 outlineColor = vec3(1.0, 1.0, 0.5);
- vec2 textureSize = vec2(960.0, 640.0);
+uniform float u_outlineSize;
+uniform vec3 u_outlineColor ;
+uniform vec2 u_textureSize ;
 
 int getIsStrokeWithAngel(float angel) {
     int stroke = 0;
-    float rad = angel * 0.01745329252; // 这个浮点数是 pi / 180，角度转弧度
-    vec2 unit = 1.0 / textureSize.xy;//单位坐标
-    vec2 offset = vec2(outlineSize * cos(rad) * unit.x, outlineSize * sin(rad) * unit.y); //偏移量
+    float rad = angel * 0.01745329252; 
+    vec2 unit = 1.0 / u_textureSize.xy;
+    vec2 offset = vec2(u_outlineSize * cos(rad) * unit.x, u_outlineSize * sin(rad) * unit.y); 
+
     float a = texture2D(texture, v_uv0 + offset).a;
-    if (a >= 0.5)// 我把alpha值大于0.5都视为不透明，小于0.5都视为透明
+    if (a >= 0.5)
     {
         stroke = 1;
     }
@@ -85,24 +90,14 @@ void main()
    
     int strokeCount = 0;
  
-    strokeCount += getIsStrokeWithAngel(0.0);
-    strokeCount += getIsStrokeWithAngel(30.0);
-    strokeCount += getIsStrokeWithAngel(60.0);
-    strokeCount += getIsStrokeWithAngel(90.0);
-    strokeCount += getIsStrokeWithAngel(120.0);
-    strokeCount += getIsStrokeWithAngel(150.0);
-    strokeCount += getIsStrokeWithAngel(180.0);
-    strokeCount += getIsStrokeWithAngel(210.0);
-    strokeCount += getIsStrokeWithAngel(240.0);
-    strokeCount += getIsStrokeWithAngel(270.0);
-    strokeCount += getIsStrokeWithAngel(300.0);
-    strokeCount += getIsStrokeWithAngel(330.0);
+    for(int i = 0;i<11;i++){
+      strokeCount += getIsStrokeWithAngel(float(i*30)+0.0);
+    }
     if (strokeCount > 0)
     {
-        myC.rgb = outlineColor;
+        myC.rgb = u_outlineColor;
         myC.a = 1.;
     }
-   
     gl_FragColor =  myC*v_color;
 }
 
