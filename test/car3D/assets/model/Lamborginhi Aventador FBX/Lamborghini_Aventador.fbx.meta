@@ -1,0 +1,245 @@
+{
+  "ver": "1.0.14",
+  "uuid": "0d3f287b-99b3-4f85-bf4b-da4308924401",
+  "scaleFactor": 20,
+  "boneCount": 0,
+  "precomputeJointMatrix": false,
+  "animationFrameRate": 30,
+  "subMetas": {
+    "buffer.bin": {
+      "ver": "1.0.0",
+      "uuid": "4b7a7269-7967-4a86-b030-73963f914e97",
+      "subMetas": {}
+    },
+    "Body.mesh": {
+      "ver": "1.0.1",
+      "uuid": "2bddecd1-65cc-4b32-a4e7-76b21afb7201",
+      "verts": 9085,
+      "tris": 7268,
+      "submeshes": 1,
+      "minPos": {
+        "x": -1.15101385116577,
+        "y": 0.129922941327095,
+        "z": -2.43035435676575
+      },
+      "maxPos": {
+        "x": 1.15101385116577,
+        "y": 1.17593693733215,
+        "z": 2.4640519618988
+      },
+      "subMetas": {}
+    },
+    "Wheel_FL.mesh": {
+      "ver": "1.0.1",
+      "uuid": "83e88a4e-1df3-403f-aa40-528c5e0a72f8",
+      "verts": 751,
+      "tris": 714,
+      "submeshes": 1,
+      "minPos": {
+        "x": 0.701783299446106,
+        "y": 0.000403535348596051,
+        "z": 0.936139225959778
+      },
+      "maxPos": {
+        "x": 1.00679767131805,
+        "y": 0.691576063632965,
+        "z": 1.62731277942657
+      },
+      "subMetas": {}
+    },
+    "Wheel_FR.mesh": {
+      "ver": "1.0.1",
+      "uuid": "9c923c6b-5681-4a26-99f2-3931995e8d56",
+      "verts": 751,
+      "tris": 714,
+      "submeshes": 1,
+      "minPos": {
+        "x": -1.00679767131805,
+        "y": 0.000403535348596051,
+        "z": 0.936139225959778
+      },
+      "maxPos": {
+        "x": -0.701783299446106,
+        "y": 0.691576063632965,
+        "z": 1.62731277942657
+      },
+      "subMetas": {}
+    },
+    "Wheel_RL.mesh": {
+      "ver": "1.0.1",
+      "uuid": "63a8f1cf-ec92-4133-9cfc-d846560347f3",
+      "verts": 751,
+      "tris": 714,
+      "submeshes": 1,
+      "minPos": {
+        "x": 0.69376415014267,
+        "y": 0.000403535348596051,
+        "z": -1.83110153675079
+      },
+      "maxPos": {
+        "x": 1.01481676101685,
+        "y": 0.727919161319733,
+        "z": -1.10358488559723
+      },
+      "subMetas": {}
+    },
+    "Wheel_RR.mesh": {
+      "ver": "1.0.1",
+      "uuid": "187ab2e3-fd81-44e5-9357-4d7c3a0ebb3b",
+      "verts": 751,
+      "tris": 714,
+      "submeshes": 1,
+      "minPos": {
+        "x": -1.01481688022614,
+        "y": 0.000403535348596051,
+        "z": -1.83110153675079
+      },
+      "maxPos": {
+        "x": -0.69376415014267,
+        "y": 0.727919161319733,
+        "z": -1.10358488559723
+      },
+      "subMetas": {}
+    },
+    "Glass.mesh": {
+      "ver": "1.0.1",
+      "uuid": "7f196fb4-4906-4129-aa99-3075f8a645ac",
+      "verts": 150,
+      "tris": 128,
+      "submeshes": 1,
+      "minPos": {
+        "x": -0.878902494907379,
+        "y": 0.52842116355896,
+        "z": -0.597316324710846
+      },
+      "maxPos": {
+        "x": 0.878902494907379,
+        "y": 1.10944271087646,
+        "z": 2.15862536430359
+      },
+      "subMetas": {}
+    },
+    "Lamborghini_Aventador.prefab": {
+      "ver": "1.2.1",
+      "uuid": "5c25a2c2-b56a-4a1f-ab50-d5ed955bba1e",
+      "optimizationPolicy": "AUTO",
+      "asyncLoadAssets": false,
+      "readonly": true,
+      "content": [
+        {
+          "__type__": "cc.Prefab",
+          "_name": "",
+          "_objFlags": 0,
+          "data": {
+            "__id__": 1
+          }
+        },
+        {
+          "__type__": "cc.Node",
+          "_name": "Sprite",
+          "_objFlags": 0,
+          "_opacity": 255,
+          "_color": {
+            "__type__": "cc.Color",
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+          },
+          "_cascadeOpacityEnabled": true,
+          "_parent": null,
+          "_anchorPoint": {
+            "__type__": "cc.Vec2",
+            "x": 0.5,
+            "y": 0.5
+          },
+          "_contentSize": {
+            "__type__": "cc.Size",
+            "width": 40,
+            "height": 36
+          },
+          "_children": [],
+          "_scaleX": 1,
+          "_scaleY": 1,
+          "_position": {
+            "__type__": "cc.Vec2",
+            "x": 0,
+            "y": 0
+          },
+          "_skewX": 0,
+          "_skewY": 0,
+          "_localZOrder": 0,
+          "_globalZOrder": 0,
+          "_tag": -1,
+          "_opacityModifyRGB": false,
+          "_reorderChildDirty": false,
+          "_id": "",
+          "_active": true,
+          "_components": [
+            {
+              "__id__": 2
+            }
+          ],
+          "_prefab": {
+            "__id__": 3
+          },
+          "_eulerAngles": {
+            "__type__": "cc.Vec3",
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "__type__": "cc.Sprite",
+          "_name": "",
+          "_objFlags": 0,
+          "node": {
+            "__id__": 1
+          },
+          "_enabled": true,
+          "_spriteFrame": {
+            "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+          },
+          "_type": 0,
+          "_sizeMode": 1,
+          "_fillType": 0,
+          "_fillCenter": {
+            "__type__": "cc.Vec2",
+            "x": 0,
+            "y": 0
+          },
+          "_fillStart": 0,
+          "_fillRange": 0,
+          "_isTrimmedMode": true,
+          "_srcBlendFactor": 770,
+          "_dstBlendFactor": 771,
+          "_atlas": null
+        },
+        {
+          "__type__": "cc.PrefabInfo",
+          "root": {
+            "__id__": 1
+          },
+          "asset": null,
+          "fileId": "d7118yAG5lKybkFOAh8koPL"
+        }
+      ],
+      "subMetas": {}
+    },
+    "Lamborginhi_base_phong.mtl": {
+      "ver": "1.0.2",
+      "uuid": "cec5b152-8ebc-4718-a3c6-e1a16b956196",
+      "dataAsSubAsset": null,
+      "name": "Lamborginhi_base_phong.mtl",
+      "subMetas": {}
+    },
+    "Lamborginhi_glass_phong.mtl": {
+      "ver": "1.0.2",
+      "uuid": "94d8586e-d650-413c-bd8b-c043dcfbe0c8",
+      "dataAsSubAsset": null,
+      "name": "Lamborginhi_glass_phong.mtl",
+      "subMetas": {}
+    }
+  }
+}

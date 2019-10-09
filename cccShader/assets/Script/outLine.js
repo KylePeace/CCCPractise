@@ -19,14 +19,13 @@ cc.Class({
     },
     start () {
     
-        // let textureSize    = new Float32Array(2)
-        // textureSize[0]     =  this.node.getContentSize().width
-        // textureSize[1]     =  this.node.getContentSize().height
-        
+        let textureSize    =  new Float32Array(2)
+        textureSize[0]     =  960
+        textureSize[1]     =  640
 
-        let textureSize    = new Float32Array(2)
-        textureSize[0]     =  200
-        textureSize[1]     =  200
+        // let textureSize    =  new Float32Array(2)
+        // textureSize[0]     =  100
+        // textureSize[1]     =  100
         this.material.setProperty("u_textureSize",textureSize)
     },
 

@@ -8,6 +8,13 @@
   },
   "_defines": {},
   "_props": {
-    "outlineSize": 0.36
+    "u_outlineSize": 0.5,
+    "u_outlineColor": {
+      "__type__": "cc.Color",
+      "r": 98,
+      "g": 17,
+      "b": 241,
+      "a": 224
+    }
   }
 }

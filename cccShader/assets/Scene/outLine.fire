@@ -68,17 +68,17 @@
         "__id__": 7
       },
       {
-        "__id__": 10
+        "__id__": 9
       },
       {
-        "__id__": 12
+        "__id__": 11
       }
     ],
     "_active": true,
     "_level": 0,
     "_components": [
       {
-        "__id__": 14
+        "__id__": 13
       }
     ],
     "_prefab": null,
@@ -162,7 +162,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 756.040177503815
+      "z": 554.2562584220408
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -320,9 +320,6 @@
     "_components": [
       {
         "__id__": 8
-      },
-      {
-        "__id__": 9
       }
     ],
     "_prefab": null,
@@ -336,8 +333,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 152,
-      "height": 103
+      "width": 228,
+      "height": 159
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -352,8 +349,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 5,
-      "y": 5,
+      "x": 1,
+      "y": 1,
       "z": 1
     },
     "_eulerAngles": {
@@ -387,7 +384,7 @@
       "__uuid__": "689a0b2a-c339-4915-9e0d-42e1a1c2bfe8"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 2,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -396,19 +393,9 @@
     },
     "_fillStart": 0,
     "_fillRange": 0,
-    "_isTrimmedMode": false,
+    "_isTrimmedMode": true,
     "_atlas": null,
     "_id": "4aCZb3a35KhqQ0SYi9zezA"
-  },
-  {
-    "__type__": "0bbf7V+DhBOn5VoyLW1Qdqy",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 7
-    },
-    "_enabled": true,
-    "_id": "00NO+cP3ZPmYE05TOpG1HZ"
   },
   {
     "__type__": "cc.Node",
@@ -422,7 +409,7 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 11
+        "__id__": 10
       }
     ],
     "_prefab": null,
@@ -473,7 +460,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 10
+      "__id__": 9
     },
     "_enabled": true,
     "_materials": [
@@ -510,7 +497,7 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 13
+        "__id__": 12
       }
     ],
     "_prefab": null,
@@ -561,7 +548,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 12
+      "__id__": 11
     },
     "_enabled": true,
     "_materials": [
