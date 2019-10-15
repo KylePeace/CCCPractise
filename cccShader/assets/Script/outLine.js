@@ -25,8 +25,8 @@ cc.Class({
         
 
         let textureSize    = new Float32Array(2)
-        textureSize[0]     =  200
-        textureSize[1]     =  200
+        textureSize[0]     =  228
+        textureSize[1]     =  159
         this.material.setProperty("u_textureSize",textureSize)
     },
 

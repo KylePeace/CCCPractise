@@ -23,13 +23,19 @@
     
     u_outlineSize:{
        type: float
-       value: 2
+       value: 0.1
     }
 
     u_outlineColor:{
        type: color3
-       value: [1,1,0.5]
+       value: [1,0.5,1]
     }
+    u_textureSize:{
+      type: vec2
+      value: [960,640]
+    }
+
+    
   }
 %}
 
@@ -70,7 +76,7 @@ int getIsStrokeWithAngel(float angel) {
     vec2 offset = vec2(u_outlineSize * cos(rad) * unit.x, u_outlineSize * sin(rad) * unit.y); 
 
     float a = texture2D(texture, v_uv0 + offset).a;
-    if (a >= 0.5)
+    if (a >= 0.3)
     {
         stroke = 1;
     }
@@ -80,25 +86,25 @@ int getIsStrokeWithAngel(float angel) {
 
 void main()
 {
-    vec4 myC = texture2D(texture, v_uv0);
-    if (myC.a >= 0.5) 
+    vec4 color = texture2D(texture, v_uv0);
+    if (color.a >= 0.3) 
     {
-        gl_FragColor = v_color * myC;
+        gl_FragColor = v_color * color;
         return;
     }
 
    
     int strokeCount = 0;
  
-    for(int i = 0;i<11;i++){
-      strokeCount += getIsStrokeWithAngel(float(i*30)+0.0);
+    for(int i = 0;i<12;i++){
+      strokeCount += getIsStrokeWithAngel(float(i*30));
     }
     if (strokeCount > 0)
     {
-        myC.rgb = u_outlineColor;
-        myC.a = 1.;
+        color.rgb = u_outlineColor;
+        color.a = 1.;
     }
-    gl_FragColor =  myC*v_color;
+    gl_FragColor =  color*v_color;
 }
 
 }
