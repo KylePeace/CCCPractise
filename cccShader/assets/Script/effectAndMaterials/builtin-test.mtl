@@ -4,12 +4,13 @@
   "_objFlags": 0,
   "_native": "",
   "_effectAsset": {
-    "__uuid__": "02387dfa-bf28-4273-8ab7-9026891e93c2"
+    "__uuid__": "4d61baa2-c223-4baa-b613-0d6f5c3d09d0"
   },
   "_defines": {},
   "_props": {
     "texture": {
       "__uuid__": "6aa0aa6a-ebee-4155-a088-a687a6aadec4"
-    }
+    },
+    "angle": 0
   }
 }

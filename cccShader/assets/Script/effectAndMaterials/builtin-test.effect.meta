@@ -4,7 +4,7 @@
   "compiledShaders": [
     {
       "vert": "\n#define _IS_VERT_SHADER 1\n\n  precision highp float;\n  attribute vec3 a_position;\n  uniform mat4 cc_matViewProj;\n  attribute mediump vec2 a_uv0;\n\tvarying mediump vec2 v_uv0;\n  \n\n  void main()\n  {\n      gl_Position = cc_matViewProj *vec4(a_position, 1);\n\n      v_uv0 = a_uv0;\n  }\n\n\n",
-      "frag": "\n#define _IS_FRAG_SHADER 1\n\nprecision highp float;\nuniform sampler2D texture;\nvarying lowp vec2 v_uv0;\nuniform float     u_time; \n\nconst float maxW   =0.02; \n\nvoid main()\n{\n    float y = v_uv0.y - maxW*sin((v_uv0.x*1000.0 - u_time*20.0)); \n    y = fract(y); \n\n    \n    \n\n    gl_FragColor =  texture2D(texture, vec2(v_uv0.x,y)).rgba;\n}\n\n\n"
+      "frag": "\n#define _IS_FRAG_SHADER 1\n\nprecision highp float;\nuniform sampler2D texture;\nvarying lowp vec2 v_uv0;\n\nuniform float scale;\nuniform float angle;\n\nvoid main()\n{\n   vec2 offset = scale * vec2( cos(angle), sin(angle)); \n   vec4 cr  = texture2D(texture,   v_uv0 + offset);\n   vec4 cga = texture2D(texture,  v_uv0); \n   vec4 cb  = texture2D(texture,   v_uv0 - offset); \n   gl_FragColor = vec4(cr.r, cga.g, cb.b, 1.); \n}\n\n\n"
     }
   ],
   "subMetas": {}

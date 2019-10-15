@@ -1,10 +1,4 @@
-// Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.  
-
-// Note: Current format version is experiment, the format may be changed.
-// The future format may not be compatible, you may need to update the script manually.
-
-// 注意：当前版本的格式是实验性的，之后还会进行修改。
-// 后续版本的格式不保证兼容当前格式，可能需要手动升级到最新版本。，
+//抖音色
 %{
   techniques: [
     {
@@ -23,6 +17,14 @@
     texture: {
       type: sampler2D
       value: null
+    }
+    scale:{
+       type: float
+       value: 0.005
+    }
+    angle:{
+      type: float
+       value: 0.0
     }
   }
 %}
@@ -49,20 +51,20 @@
 precision highp float;
 uniform sampler2D texture;
 varying lowp vec2 v_uv0;
-uniform float     u_time; 
 
 
-const float maxW   =0.02; 
+uniform float scale;
+uniform float angle;
+
+
 
 void main()
 {
-    float y = v_uv0.y - maxW*sin((v_uv0.x*1000.0 - u_time*20.0)); 
-    y = fract(y); 
-
-    // float x = v_uv0.x - maxW*cos((v_uv0.y*30.0 - u_time*1.0)); 
-    // x = fract(x);
-
-    gl_FragColor =  texture2D(texture, vec2(v_uv0.x,y)).rgba;
+   vec2 offset = scale * vec2( cos(angle), sin(angle)); 
+   vec4 cr  = texture2D(texture,   v_uv0 + offset);
+   vec4 cga = texture2D(texture,  v_uv0); 
+   vec4 cb  = texture2D(texture,   v_uv0 - offset); 
+   gl_FragColor = vec4(cr.r, cga.g, cb.b, 1.); 
 }
 
 }
