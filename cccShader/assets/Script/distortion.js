@@ -22,8 +22,6 @@ cc.Class({
             default:0,
             type:cc.Float,           
         },
-       
-
         rollspeed:{
             default:0,
             type:cc.Float,           
