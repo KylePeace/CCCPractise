@@ -1,0 +1,70 @@
+//抖音色
+%{
+  techniques: [
+    {
+      passes: [
+        {
+          vert: vs
+          frag: fs
+          cullMode: none
+          blend: true
+        }
+      ]
+      layer: 0
+    }
+  ]
+  properties: {
+    texture: {
+      type: sampler2D
+      value: null
+    }
+    scale:{
+       type: float
+       value: 0.005
+    }
+    angle:{
+      type: float
+       value: 0.0
+    }
+  }
+%}
+
+%% vs {
+  precision highp float;
+  attribute vec3 a_position;
+  uniform mat4 cc_matViewProj;
+  attribute mediump vec2 a_uv0;
+	varying mediump vec2 v_uv0;
+  
+
+
+  void main()
+  {
+      gl_Position = cc_matViewProj *vec4(a_position, 1);
+
+      v_uv0 = a_uv0;
+  }
+}
+
+%% fs {
+
+precision highp float;
+uniform sampler2D texture;
+varying lowp vec2 v_uv0;
+
+
+uniform float scale;
+uniform float angle;
+
+
+
+void main()
+{
+   vec2 offset = scale * vec2( cos(angle), sin(angle)); 
+   vec4 cr  = texture2D(texture,   v_uv0 + offset);
+   vec4 cga = texture2D(texture,  v_uv0); 
+   vec4 cb  = texture2D(texture,   v_uv0 - offset); 
+   gl_FragColor = vec4(cr.r, cga.g, cb.b, 1.); 
+}
+
+}
