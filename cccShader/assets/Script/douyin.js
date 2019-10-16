@@ -15,8 +15,8 @@ cc.Class({
 
         u_scale:{
             default:0,
-            type:cc.Integer,
-            range:[0,360,0.001],
+            type:cc.Float,
+            range:[0,10,0.001],
             slide:true,
         },
     },
@@ -31,7 +31,7 @@ cc.Class({
 
     update(dt){
         this.time+=dt
-        let scale = 0.003*Math.sin(this.u_scale+50*this.time)
+        let scale = 0.001*Math.sin(this.u_scale+30*this.time)
         this.material.setProperty("u_scale", scale)
     }
 });

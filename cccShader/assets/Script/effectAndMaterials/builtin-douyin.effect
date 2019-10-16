@@ -65,10 +65,10 @@ vec2 noise(vec2 p) {
 void main()
 {
    vec2 offset = u_scale * vec2( cos(u_angle), sin(u_angle)); 
-   vec4 cr  = texture2D(texture,   v_uv0 +offset);
-   vec4 cga = texture2D(texture,   v_uv0); 
-   vec4 cb  = texture2D(texture,   v_uv0 + offset); 
-   gl_FragColor = vec4(cr.r, cga.g, cb.b, 1); 
+   float r  = texture2D(texture,   v_uv0 - offset).r;
+   float g = texture2D(texture,   v_uv0).g; 
+   float b  = texture2D(texture,   v_uv0 + offset).b; 
+   gl_FragColor = vec4(r, g, b, 1.); 
 }
 
 }
