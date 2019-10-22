@@ -61,6 +61,7 @@ void main()
   gl_FragColor = vec4(texture2D(texture, v_uv0).rgb,s); 
 
   
+   //gl_FragColor = vec4(texture2D(texture, v_uv0).rgb,circle(v_uv0,160./320.)); 
 }
 
 }

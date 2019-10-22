@@ -67,7 +67,7 @@ void main()
         vec3 result = improve * vec3( src_color.r, src_color.g, src_color.b);
         gl_FragColor = vec4(result, src_color.a);
         // gl_FragColor = vec4(0,0,0, src_color.a);
-
+        texture2D(texture, uv).rgba
 
     } else {
         gl_FragColor = src_color;
