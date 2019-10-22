@@ -11,6 +11,11 @@
     "texture": {
       "__uuid__": "6aa0aa6a-ebee-4155-a088-a687a6aadec4"
     },
-    "angle": 0
+    "u_buffer": {
+      "__uuid__": "50acc952-efab-4562-9a12-11421816f1e7"
+    },
+    "u_noise": {
+      "__uuid__": "50acc952-efab-4562-9a12-11421816f1e7"
+    }
   }
 }

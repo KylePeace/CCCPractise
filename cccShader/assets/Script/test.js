@@ -10,24 +10,12 @@ cc.Class({
     },
     onLoad() {
         this.material = this.node.getComponent(cc.Sprite).getMaterial(0)
-        this.time = 0
-        
-        this.flag = false
-        this.schedule(()=>{
-            if(!this.flag){
-                if(this.time>0.001){
-                    this.flag = true
-                }
-                this.time+=0.0001;
-            }else{
-                if(this.time<0){
-                    this.flag = false
-                }
-                this.time-=0.0001;
-            }
-            this.material.setProperty("scale",this.time)
-            
-        },0.005)
+        this.node.on(cc.Node.EventType.TOUCH_MOVE, function (event) {
+            let pos = this.node.convertToNodeSpaceAR( event.getLocation() );
+            console.log('TOUCH_MOVE',cc.v2((pos.x+320)/640,(pos.y+320)/640));
+            this.material.setProperty("u_touch", cc.v2((pos.x+320)/640,(pos.y+320)/640))
+          }, this);
+   
     },
    
     update(dt){
