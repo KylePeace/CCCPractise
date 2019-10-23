@@ -18,7 +18,18 @@
       type: sampler2D
       value: null
     }
-    
+    u_blur: { //边缘模糊
+      type: float
+      value: 0
+    }
+    u_radius:{//半径
+      type: float
+      value: 150
+    }
+    u_size:{//头像图片大小
+      type: vec2
+      value: [512.,512.]
+    }
   }
 %}
 
@@ -45,12 +56,16 @@
 precision highp float;
 uniform sampler2D texture;
 varying lowp vec2 v_uv0;
+uniform float u_blur;
+uniform float u_radius;
+uniform vec2 u_size;
 
-float k = 0.05;
-float r =0.6;
+
+
+float r =u_radius/u_size.x;
 float circle( vec2 _st){
 	  float s  =  distance(_st,vec2(0.5));
-    float s1 =  smoothstep(s-s* k,s+s* k,r);
+    float s1 =  smoothstep(s-s* u_blur,s+s* u_blur,r);
 	  return s1;
 
 }
@@ -59,9 +74,6 @@ void main()
 {
   float s = circle(v_uv0);
   gl_FragColor = vec4(texture2D(texture, v_uv0).rgb,s); 
-
-  
-   //gl_FragColor = vec4(texture2D(texture, v_uv0).rgb,circle(v_uv0,160./320.)); 
 }
 
 }
