@@ -6,16 +6,16 @@
   "_effectAsset": {
     "__uuid__": "4d61baa2-c223-4baa-b613-0d6f5c3d09d0"
   },
-  "_defines": {},
+  "_defines": {
+    "USE_TYPE1": false,
+    "USE_ATTRIBUTE_CIRCLE": true
+  },
   "_props": {
     "texture": {
       "__uuid__": "6aa0aa6a-ebee-4155-a088-a687a6aadec4"
     },
-    "u_buffer": {
-      "__uuid__": "50acc952-efab-4562-9a12-11421816f1e7"
-    },
-    "u_noise": {
-      "__uuid__": "50acc952-efab-4562-9a12-11421816f1e7"
+    "maskTexture": {
+      "__uuid__": "a8027877-d8d6-4645-97a0-52d4a0123dba"
     }
   }
 }

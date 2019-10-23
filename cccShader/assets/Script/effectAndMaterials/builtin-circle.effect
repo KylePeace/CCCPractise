@@ -52,7 +52,6 @@ float circle( vec2 _st){
 	  float s  =  distance(_st,vec2(0.5));
     float s1 =  smoothstep(s-s* k,s+s* k,r);
 	  return s1;
-
 }
 
 void main()

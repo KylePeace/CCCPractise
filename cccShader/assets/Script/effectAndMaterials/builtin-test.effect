@@ -9,8 +9,7 @@
           cullMode: none
           blend: true
         }
-      ]
-      layer: 0
+    	]
     }
   ]
   properties: {
@@ -18,69 +17,71 @@
       type: sampler2D
       value: null
     }
-     u_buffer: {
+	maskTexture: {
       type: sampler2D
       value: null
     }
-     u_noise: {
-      type: sampler2D
-      value: null
+	u_touch: {
+      type: vec2
+      value: [0.5,0.5]
     }
   }
 %}
 
 %% vs {
-  precision highp float;
-  attribute vec3 a_position;
-  uniform mat4 cc_matViewProj;
-  attribute mediump vec2 a_uv0;
+
+	precision highp float;
+	attribute vec3 a_position;
+	uniform mat4 cc_matViewProj;
+	attribute mediump vec2 a_uv0;
 	varying mediump vec2 v_uv0;
-  varying vec4 v_color;
-  
+	attribute vec4 a_color;
+  	varying   vec4 v_color;
+	
+	void main(){
+		gl_Position = cc_matViewProj *vec4(a_position, 1);
 
-
-  void main()
-  {
-      gl_Position = cc_matViewProj *vec4(a_position, 1);
-
-      v_uv0 = a_uv0;
-  }
+		v_uv0 = a_uv0;
+		v_color = a_color;
+	}
 }
 
 %% fs {
+	precision highp float;
+	uniform sampler2D texture;
+	uniform sampler2D maskTexture;
 
-precision highp float;
-uniform sampler2D texture;
-uniform lowp vec2 u_touch;
-varying mediump vec2 v_uv0;
+	uniform lowp vec2 u_touch;
+	varying mediump vec2 v_uv0;
+	varying vec4 v_color;
 
-  uniform sampler2D u_buffer;
-  
-  uniform vec2 u_resolution;
- 
+	float circle(){
+		float s  =  distance(u_touch,v_uv0);
+		return smoothstep(s+s*0.5,s-s*0.5,0.1);
+	}
 
-  #define PI 3.141592653589793
-  #define TAU 6.283185307179586
+	float cube(){
+		float a = 0.1;
+		if((u_touch.x>(v_uv0.x-a))&&(u_touch.x<(v_uv0.x+a))&&(u_touch.y>(v_uv0.y-a))&&(u_touch.y<(v_uv0.y+a))){
+			float s  =  distance(u_touch,v_uv0);
+			return smoothstep(s+s*0.5,s-s*0.5,0.1);	
+		};
+		return 1.;
+	}
 
-  const float delta = .005;
-
-  void main() {
-    // vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / min(u_resolution.y, u_resolution.x);
-    vec2 sample = v_uv0.xy / vec2(640,640);
-    float ratio = 1.;
-    vec2 mouse = u_touch.xy - v_uv0;
-    
-    vec4 fragcolour = texture2D(u_buffer, sample);
-
-    float shade = smoothstep(.08 + abs(sin(1.*10.) * .006), .0, length(mouse));
-    vec4 texcol = fragcolour;
-
-    float d = shade*2.;
-
-    fragcolour = vec4(d, texcol.x, 0, 1.);
-
-   
-
-    gl_FragColor = fragcolour ;
-  }
+	void main() {
+		
+		#if  USE_TYPE1
+			#if USE_ATTRIBUTE_CIRCLE
+				gl_FragColor = vec4(texture2D(texture,v_uv0).rgb,1.- circle());
+			#else
+				gl_FragColor = vec4(texture2D(texture,v_uv0).rgb,1.- cube());
+			#endif
+		#else 
+			//if(1.- circle()>0.1&&texture2D(maskTexture,v_uv0).a>0.1){
+				gl_FragColor =vec4(texture2D(maskTexture,v_uv0).rgb,1.- circle()) ;
+			//}
+			
+		#endif
+	}
 }

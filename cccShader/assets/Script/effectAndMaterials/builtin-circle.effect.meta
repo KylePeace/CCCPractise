@@ -4,7 +4,7 @@
   "compiledShaders": [
     {
       "vert": "\n#define _IS_VERT_SHADER 1\n\n  precision highp float;\n  attribute vec3 a_position;\n  uniform mat4 cc_matViewProj;\n  attribute mediump vec2 a_uv0;\n\tvarying mediump vec2 v_uv0;\n  varying vec4 v_color;\n\n  void main()\n  {\n      gl_Position = cc_matViewProj *vec4(a_position, 1);\n\n      v_uv0 = a_uv0;\n  }\n\n\n",
-      "frag": "\n#define _IS_FRAG_SHADER 1\n\nprecision highp float;\nuniform sampler2D texture;\nvarying lowp vec2 v_uv0;\n\nfloat k = 0.05;\nfloat r =0.6;\nfloat circle( vec2 _st){\n\t  float s  =  distance(_st,vec2(0.5));\n    float s1 =  smoothstep(s-s* k,s+s* k,r);\n\t  return s1;\n\n}\n\nvoid main()\n{\n  float s = circle(v_uv0);\n  gl_FragColor = vec4(texture2D(texture, v_uv0).rgb,s); \n\n  \n   \n}\n\n\n"
+      "frag": "\n#define _IS_FRAG_SHADER 1\n\nprecision highp float;\nuniform sampler2D texture;\nvarying lowp vec2 v_uv0;\n\nfloat k = 0.05;\nfloat r =0.6;\nfloat circle( vec2 _st){\n\t  float s  =  distance(_st,vec2(0.5));\n    float s1 =  smoothstep(s-s* k,s+s* k,r);\n\t  return s1;\n}\n\nvoid main()\n{\n  float s = circle(v_uv0);\n  gl_FragColor = vec4(texture2D(texture, v_uv0).rgb,s); \n\n  \n   \n}\n\n\n"
     }
   ],
   "subMetas": {}

@@ -156,7 +156,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 160.21469970012117
+      "z": 554.2562584220408
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -188,9 +188,9 @@
     "_clearFlags": 7,
     "_backgroundColor": {
       "__type__": "cc.Color",
-      "r": 240,
-      "g": 250,
-      "b": 245,
+      "r": 16,
+      "g": 17,
+      "b": 17,
       "a": 255
     },
     "_depth": -1,
@@ -213,13 +213,13 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "sp",
+    "_name": "HelloWorld",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_level": 1,
     "_components": [
       {
@@ -267,7 +267,7 @@
     "_skewY": 0,
     "_is3DNode": false,
     "groupIndex": 0,
-    "_id": "a7hrGHAZpNv4FLGu2kpGqe"
+    "_id": "e7b9REeWFPULSBiRHlNL6V"
   },
   {
     "__type__": "cc.Sprite",
@@ -299,7 +299,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": null,
-    "_id": "fe9LgcjwpMW5MPpAHsvjFT"
+    "_id": "8evzSqd8xBWLu37FVnsiiv"
   },
   {
     "__type__": "cc.Node",
@@ -323,9 +323,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 248,
-      "g": 248,
-      "b": 248,
+      "r": 0,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_contentSize": {
@@ -402,6 +402,9 @@
       "__id__": 7
     },
     "_enabled": true,
+    "camera": {
+      "__id__": 4
+    },
     "_id": "30gYRvqUVLHJOS2v8lQ6BE"
   },
   {
