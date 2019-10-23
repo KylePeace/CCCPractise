@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.Material",
+  "_name": "",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "86c23832-25b3-45ca-a0f8-c661923f7c94"
+  },
+  "_defines": {
+    "USE_ATTRIBUTE_CIRCLE": true
+  },
+  "_props": {
+    "texture": {
+      "__uuid__": "50acc952-efab-4562-9a12-11421816f1e7"
+    },
+    "u_touch": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    }
+  }
+}

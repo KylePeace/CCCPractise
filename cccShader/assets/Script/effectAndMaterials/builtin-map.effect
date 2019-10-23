@@ -1,0 +1,89 @@
+//抖音色
+%{
+  techniques: [
+    {
+      passes: [
+        {
+          vert: vs
+          frag: fs
+          cullMode: none
+          blend: true
+        }
+    	]
+    }
+  ]
+  properties: {
+    texture: {
+      type: sampler2D
+      value: null
+    }
+
+	u_touch: {
+      type: vec2
+      value: [0.5,0.5]
+    }
+
+	u_radius: {
+      type: float
+      value: 0.1
+    }
+  }
+%}
+
+%% vs {
+
+	precision highp float;
+	attribute vec3 a_position;
+	uniform mat4 cc_matViewProj;
+	attribute mediump vec2 a_uv0;
+	varying mediump vec2 v_uv0;
+  
+  		
+	
+	void main(){
+		gl_Position = cc_matViewProj *vec4(a_position, 1);
+
+		v_uv0 = a_uv0;
+		
+	}
+}
+
+%% fs {
+	precision highp float;
+	uniform sampler2D texture;
+	
+
+	uniform lowp vec2 u_touch;
+	uniform lowp vec2 u_size;
+
+	varying mediump vec2 v_uv0;
+
+	
+	#if USE_ATTRIBUTE_CIRCLE
+		uniform float u_radius;//半径
+		float circle(){
+			float s  =  distance(u_touch,v_uv0);
+			return smoothstep(s+s*0.5,s-s*0.5,u_radius);
+		}
+	#endif 
+	
+	
+	float cube(){
+		float a = 0.1;
+		if((u_touch.x>(v_uv0.x-a))&&(u_touch.x<(v_uv0.x+a))&&(u_touch.y>(v_uv0.y-a))&&(u_touch.y<(v_uv0.y+a))){
+			float s  =  distance(u_touch,v_uv0);
+			return smoothstep(s+s*0.5,s-s*0.5,0.1);	
+		};
+		return 1.;
+	}
+
+	void main() {
+		
+		#if USE_ATTRIBUTE_CIRCLE
+			gl_FragColor = vec4(texture2D(texture,v_uv0).rgb,1.- circle());
+		#else
+			gl_FragColor = vec4(texture2D(texture,v_uv0).rgb,1.- cube());
+		#endif
+	
+	}
+}
