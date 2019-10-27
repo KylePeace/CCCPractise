@@ -153,7 +153,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 554.2562584220408
+      "z": 495.36653096469894
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -185,9 +185,9 @@
     "_clearFlags": 7,
     "_backgroundColor": {
       "__type__": "cc.Color",
-      "r": 16,
-      "g": 17,
-      "b": 17,
+      "r": 25,
+      "g": 233,
+      "b": 233,
       "a": 255
     },
     "_depth": -1,
@@ -210,7 +210,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "sp2",
+    "_name": "sp",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -237,8 +237,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 512,
-      "height": 512
+      "width": 640,
+      "height": 640
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -253,8 +253,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 2,
-      "y": 2,
+      "x": 1,
+      "y": 1,
       "z": 1
     },
     "_eulerAngles": {

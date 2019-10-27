@@ -7,7 +7,7 @@
     "__uuid__": "86c23832-25b3-45ca-a0f8-c661923f7c94"
   },
   "_defines": {
-    "USE_ATTRIBUTE_CIRCLE": true
+    "USE_ATTRIBUTE_CIRCLE": false
   },
   "_props": {
     "texture": {
@@ -17,6 +17,7 @@
       "__type__": "cc.Vec2",
       "x": 0.5,
       "y": 0.5
-    }
+    },
+    "u_ratio": 0.01
   }
 }

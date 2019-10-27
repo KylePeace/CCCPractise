@@ -27,6 +27,11 @@
       type: float
       value: 0.1
     }
+
+	u_ratio:{
+		type:float
+		value:0.5
+	}
   }
 %}
 
@@ -54,25 +59,26 @@
 	
 
 	uniform lowp vec2 u_touch;
-	uniform lowp vec2 u_size;
 
 	varying mediump vec2 v_uv0;
 
-	
+	uniform float u_ratio;//系数
+	uniform float u_radius;//半径,边长
+
+
 	#if USE_ATTRIBUTE_CIRCLE
-		uniform float u_radius;//半径
+		
 		float circle(){
 			float s  =  distance(u_touch,v_uv0);
-			return smoothstep(s+s*0.5,s-s*0.5,u_radius);
+			return smoothstep(s+s*u_ratio,s-s*u_ratio,u_radius);
 		}
 	#endif 
 	
 	
 	float cube(){
-		float a = 0.1;
-		if((u_touch.x>(v_uv0.x-a))&&(u_touch.x<(v_uv0.x+a))&&(u_touch.y>(v_uv0.y-a))&&(u_touch.y<(v_uv0.y+a))){
-			float s  =  distance(u_touch,v_uv0);
-			return smoothstep(s+s*0.5,s-s*0.5,0.1);	
+		if((u_touch.x>(v_uv0.x-u_radius))&&(u_touch.x<(v_uv0.x+u_radius))&&(u_touch.y>(v_uv0.y-u_radius))&&(u_touch.y<(v_uv0.y+u_radius))){
+			// float s  =  distance(u_touch,v_uv0);
+			return .0;	
 		};
 		return 1.;
 	}

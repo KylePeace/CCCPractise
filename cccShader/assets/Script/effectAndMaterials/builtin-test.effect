@@ -17,10 +17,7 @@
       type: sampler2D
       value: null
     }
-	maskTexture: {
-      type: sampler2D
-      value: null
-    }
+
 	u_touch: {
       type: vec2
       value: [0.5,0.5]
@@ -57,7 +54,7 @@
 
 	float circle(){
 		float s  =  distance(u_touch,v_uv0);
-		return smoothstep(s+s*0.5,s-s*0.5,0.1);
+		return smoothstep(s+s*0.05,s-s*0.05,0.1);
 	}
 
 	float cube(){
@@ -71,17 +68,9 @@
 
 	void main() {
 		
-		#if  USE_TYPE1
-			#if USE_ATTRIBUTE_CIRCLE
-				gl_FragColor = vec4(texture2D(texture,v_uv0).rgb,1.- circle());
-			#else
-				gl_FragColor = vec4(texture2D(texture,v_uv0).rgb,1.- cube());
-			#endif
-		#else 
-			//if(1.- circle()>0.1&&texture2D(maskTexture,v_uv0).a>0.1){
-				gl_FragColor =vec4(texture2D(maskTexture,v_uv0).rgb,1.- circle()) ;
-			//}
+		
+		gl_FragColor =vec4(.0,.0,.0,1.- circle()) ;
 			
-		#endif
+	
 	}
 }
